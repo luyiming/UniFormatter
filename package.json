@@ -1,36 +1,63 @@
 {
-    "name": "code-formatter",
-    "displayName": "code-formatter",
-    "description": "Universal code formatter for VS Code.",
-    "version": "0.0.1",
-    "publisher": "luyiming",
-    "engines": {
-        "vscode": "^1.17.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:extension.sayHello"
-    ],
-    "main": "./out/extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.5.3",
-        "vscode": "^1.1.5",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+  "name": "code-formatter",
+  "displayName": "code-formatter",
+  "description": "Universal code formatter for VS Code.",
+  "version": "0.0.1",
+  "publisher": "luyiming",
+  "engines": {
+    "vscode": "^1.17.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "format",
+    "beautify",
+    "prettify"
+  ],
+  "activationEvents": [
+    "onLanguage:cpp",
+    "onCommand:code-formatter.run"
+  ],
+  "main": "./out/extension",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.5.3",
+    "vscode": "^1.1.5",
+    "@types/node": "^7.0.43",
+    "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "@types/diff": "^3.2.2",
+    "diff": "^3.4.0"
+  },
+  "contributes": {
+    "commands": [{
+      "command": "code-formatter.run",
+      "title": "Format Document"
+    }],
+    "configuration": {
+      "type": "object",
+      "title": "Code Formatter Configuration",
+      "properties": {
+        "clang-format": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Flags to run clang-format",
+          "scope": "resource"
+        }
+      }
     }
+
+  }
 }
