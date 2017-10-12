@@ -4,6 +4,7 @@
   "description": "Universal code formatter for VS Code.",
   "version": "0.0.1",
   "publisher": "luyiming",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.17.0"
   },
