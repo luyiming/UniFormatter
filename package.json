@@ -48,14 +48,24 @@
       "type": "object",
       "title": "Code Formatter Configuration",
       "properties": {
-        "clang-format": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [],
-          "description": "Flags to run clang-format",
+        "c++.formatter": {
+          "enum": ["clang-format", "uncrusity"],
+          "type": "string",
+          "default": "clang-format",
+          "description": "Code formatter for c++ languague",
           "scope": "resource"
+        },
+        "c.formatter": {
+          "enum": ["clang-format", "uncrusity"],
+          "type": "string",
+          "default": "clang-format",
+          "description": "Code formatter for c++ languague"
+        },
+        "clang-format.style": {
+          "enum": ["LLVM", "Google", "Chromium", "Mozilla", "WebKit", "file"],
+          "type": "string",
+          "default": "LLVM",
+          "description": "Use `file` to load style configuration from .clang-format file located in one of the parent directories of the source file"
         }
       }
     }

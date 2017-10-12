@@ -12,13 +12,13 @@ export class Formatter {
     public formatDocument(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, reject) => {
             let filename = document.fileName;
-            // let goConfig = vscode.workspace.getConfiguration('go', document.uri);
+            let formatterConfig = vscode.workspace.getConfiguration('clang-format', document.uri);
             // let formatTool = goConfig['formatTool'] || 'goreturns';
             let formatTool = 'clang-format'
             let formatCommandBinPath = getBinPath(formatTool);
 
-            // let formatFlags = goConfig['formatFlags'] || [];
-            let formatFlags = [];
+            let formatFlags = ['-style=' + formatterConfig['style']] || [];
+            console.log(formatFlags);
 
             // let canFormatToolUseDiff = goConfig['useDiffForFormatting'] && isDiffToolAvailable();
             let canFormatToolUseDiff = false;
@@ -43,7 +43,6 @@ export class Formatter {
                         console.log(err);
                         return reject('Cannot format due to syntax errors.');
                     };
-
                     let textEdits: vscode.TextEdit[] = [];
                     let filePatch = canFormatToolUseDiff ? getEditsFromUnifiedDiffStr(stdout)[0] : getEdits(filename, document.getText(), stdout);
 
@@ -55,13 +54,6 @@ export class Formatter {
 
                     console.log(timeTaken + 'ms');
 
-					/* __GDPR__
-					   "format" : {
-						  "tool" : { "classification": "SystemMetaData", "purpose": "FeatureInsight" },
-						  "timeTaken": { "classification": "SystemMetaData", "purpose": "PerformanceAndHealth", "isMeasurement": true }
-					   }
-					 */
-                    // sendTelemetryEvent('format', { tool: formatTool }, { timeTaken });
                     return resolve(textEdits);
                 } catch (e) {
                     reject('Internal issues while getting diff from formatted content');
