@@ -5,25 +5,27 @@ import path = require('path');
 import { getBinPath } from './../util';
 import { Formatter } from './Formatter'
 
-export class ClangFormatFormatter extends Formatter {
+export class Autopep8Formatter extends Formatter {
     public supporttedLanguages: string[];
     public url: string;
     public formatTool: string;
 
     constructor() {
         super();
-        this.supporttedLanguages = ['c', 'cpp', 'csharp', 'objective-c', 'java']; // D, Pawn, VALA
-        this.url = 'https://clang.llvm.org/docs/ClangFormat.html';
-        this.formatTool = 'clang-format';
+        this.supporttedLanguages = ['python'];
+        this.url = 'https://github.com/hhatto/autopep8';
+        this.formatTool = 'autopep8';
     }
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
         let formatToolBinPath = getBinPath(this.formatTool);
 
-        let formatterConfig = vscode.workspace.getConfiguration('clang-format', document.uri);
-        let formatFlags = ['-style=' + formatterConfig['style'], document.fileName] || [document.fileName];
+        let maxline = vscode.workspace.getConfiguration('autopep8', document.uri)['maxline'];
 
-        return this._getEditsExternal(document, formatToolBinPath, formatFlags, {}).then(null, err => {
+        // -d: use unified diff output
+        let formatFlags = ['-d', '--max-line-length', maxline, document.fileName]
+
+        return this._getEditsExternal(document, formatToolBinPath, formatFlags, {}, true).then(null, err => {
             if (typeof err === 'string' && err.startsWith(this.MissingToolError)) {
                 vscode.window.showInformationMessage(`Could not find \'${path.basename(formatToolBinPath)}\'. The program may not be installed.`, 'More').then(selected => {
                     if (selected === 'More') {

@@ -20,6 +20,7 @@
   "activationEvents": [
     "onLanguage:cpp",
     "onLanguage:yaml",
+    "onLanguage:python",
     "onCommand:code-formatter.run"
   ],
   "main": "./out/extension",
@@ -88,6 +89,11 @@
           "type": "integer",
           "default": 0,
           "description": "The amount of padding to add next to each line. (Supported by align-yaml)"
+        },
+        "autopep8.maxline": {
+          "type": "integer",
+          "default": 79,
+          "description": "Maximum allowed line length"
         }
       }
     }

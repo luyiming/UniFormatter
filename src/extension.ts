@@ -5,6 +5,7 @@ import * as vscode from 'vscode';
 import { UniDocumentFormattingEditProvider } from './formatter';
 import { ClangFormatFormatter } from './formatters/clang-format'
 import { AlignYamlFormatter } from './formatters/align-yaml'
+import { Autopep8Formatter } from './formatters/autopep8'
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -22,6 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('cpp', new UniDocumentFormattingEditProvider(new ClangFormatFormatter())));
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('yaml', new UniDocumentFormattingEditProvider(new AlignYamlFormatter())));
+    context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('python', new UniDocumentFormattingEditProvider(new Autopep8Formatter())));
 }
 
 // this method is called when your extension is deactivated
