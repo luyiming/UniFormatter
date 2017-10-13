@@ -53,7 +53,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | SassConvert          | :x: TODO                |
 | sqlformat            | :x: TODO                |
 | stylish-haskell      | :x: TODO                |
-| Tidy Markdown        | :x: TODO                |
+| Tidy Markdown        | :white_check_mark: Done |
 | TypeScript Formatter | :x: TODO                |
 | Uncrustify           | :x: TODO                |
 | Vue Beautifier       | :x: TODO                |

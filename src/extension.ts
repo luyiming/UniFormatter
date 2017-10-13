@@ -9,6 +9,7 @@ import { Autopep8Formatter } from './formatters/autopep8'
 import { BeautyshFormatter } from './formatters/beautysh'
 import { CljfmtFormatter } from './formatters/cljfmt'
 import { CoffeeFmtFormatter } from './formatters/coffee-fmt'
+import { TidyMarkdownFormatter } from './formatters/tidy-markdown'
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -18,8 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
     let disposable = vscode.commands.registerCommand('code-formatter.run', () => {
-        let formatter = new ClangFormatFormatter();
-        formatter.formatDocument();
+
     });
 
     context.subscriptions.push(disposable);
@@ -30,6 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('shellscript', new UniDocumentFormattingEditProvider(new BeautyshFormatter())));
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('clojure', new UniDocumentFormattingEditProvider(new CljfmtFormatter())));
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('coffeescript', new UniDocumentFormattingEditProvider(new CoffeeFmtFormatter())));
+    context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('markdown', new UniDocumentFormattingEditProvider(new TidyMarkdownFormatter())));
 }
 
 // this method is called when your extension is deactivated
