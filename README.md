@@ -62,80 +62,79 @@ Some of the supported formatters are developed for Node.js and are automatically
 ## Language Support
 
 
-| Language        | File Extensions                                                                          | Supported Formatters                                                            |
-|-----------------|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| Apex            | `.cls`, `.trigger`                                                                       | **[`Uncrustify`]()**                                                            |
-| Arduino         | `.ino`, `.pde`                                                                           | **[`Uncrustify`]()**                                                            |
-| Bash            | `.bash`, `.sh`                                                                           | **[`beautysh`]()**                                                              |
-| C               | `.h`, `.c`, `.cl`                                                                        | **[`Uncrustify`]()**, [`clang-format`]()                                        |
-| Coldfusion      | `.cfm`, `.cfml`, `.cfc`                                                                  | **[`Pretty Diff`]()**                                                           |
-| Clojure         | `.clj`, `.cljs`, `.edn`                                                                  | **[`cljfmt`]()**                                                                |
-| CoffeeScript    | `.coffee`                                                                                | **[`coffee-fmt`]()**, [`Coffee Formatter`]()                                    |
-| C++             | `.h`, `.hh`, `.cc`, `.cpp`, `.cxx`, `.C`, `.cu`, `.c++`, `.hpp`, `.hxx`, `.h++`, `.cuh`  | **[`Uncrustify`]()**, [`clang-format`]()                                        |
-| Crystal         | `.cr`                                                                                    | **[`Crystal`](http://crystal-lang.org)**                                        |
-| C#              | `.cs`                                                                                    | **[`Uncrustify`]()**                                                            |
-| CSS             | `.css`                                                                                   | **[`JS Beautify`]()**, [`CSScomb`](), [`Pretty Diff`](), [`SassConvert`]()      |
-| CSV             | `.csv`                                                                                   | **[`Pretty Diff`]()**                                                           |
-| D               | `.d`                                                                                     | **[`Uncrustify`]()**, [`dfmt`](https://github.com/Hackerpilot/dfmt)             |
-| EJS             | `.ejs`                                                                                   | **[`JS Beautify`]()**, [`Pretty Diff`]()                                        |
-| Elm             | `.elm`                                                                                   | **[`elm-format`](https://github.com/avh4/elm-format)**                          |
-| ERB             | `.erb`                                                                                   | **[`Pretty Diff`]()**, [`HTML Beautifier`]()                                    |
-| Erlang          | `.erl`                                                                                   | **[`erl_tidy`](http://erlang.org/doc/man/erl_tidy.html)**                       |
-| Fortran         | `.f90`, `.F90`, `.f95`, `.F95`, `.f03`, `.F03`, `.f08`, `.F08`                           | **[`Fortran Beautifier`](https://www.gnu.org/software/emacs/)**                 |
-| gherkin         | `.feature`                                                                               | **[`Gherkin formatter`]()**                                                     |
-| GLSL            | `.vert`, `.frag`                                                                         | **[`clang-format`]()**                                                          |
-| Go              | `.go`                                                                                    | **[`gofmt`](https://golang.org/cmd/gofmt/)**, [`goimports`]()                   |
-| Golang Template | `.gohtml`                                                                                | **[`Pretty Diff`]()**                                                           |
-| Handlebars      | `.hbs`, `.handlebars`                                                                    | **[`JS Beautify`]()**, [`Pretty Diff`]()                                        |
-| Haskell         | `.hs`                                                                                    | **[`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell)**           |
-| HTML            | `.html`                                                                                  | **[`JS Beautify`]()**, [`Pretty Diff`]()                                        |
-| Jade            | `.jade`, `.pug`                                                                          | **[`Pug Beautify`](https://github.com/vingorius/pug-beautify)**                 |
-| Java            | `.java`                                                                                  | **[`Uncrustify`]()**                                                            |
-| JavaScript      | `.js`                                                                                    | **[`JS Beautify`]()**, [`ESLint Fixer`](), [`JSCS Fixer`](/), [`Pretty Diff`]() |
-| JSON            | `.json`                                                                                  | **[`JS Beautify`]()**, [`Pretty Diff`]()                                        |
-| JSX             | `.jsx`, `.js`                                                                            | **[`Pretty Diff`]()**, [`JS Beautify`]()                                        |
-| LaTeX           | `.bib`, `.tex`, `.sty`, `.cls`, `.dtx`, `.ins`, `.bbx`, `.cbx`                           | **[`Latex Beautify`]()**                                                        |
-| LESS            | `.less`                                                                                  | **[`Pretty Diff`]()**, [`CSScomb`]()                                            |
-| Lua             | `.lua`, `.ttslua`                                                                        | **[`Lua beautifier`]()**                                                        |
-| Markdown        | `.markdown`, `.md`                                                                       | **[`Tidy Markdown`]()**, [`Remark`](https://github.com/wooorm/remark)           |
-| Marko           | `.marko`                                                                                 | **[`Marko Beautifier`](https://github.com/marko-js/marko-prettyprint)**         |
-| Mustache        | `.mustache`                                                                              | **[`JS Beautify`]()**, [`Pretty Diff`]()                                        |
-| Nginx           | `.conf`                                                                                  | **[`Nginx Beautify`](https://github.com/denysvitali/nginxbeautify)**            |
-| Nunjucks        | `.njk`, `.nunjucks`                                                                      | **[`Pretty Diff`]()**                                                           |
-| Objective-C     | `.m`, `.mm`, `.h`                                                                        | **[`Uncrustify`]()**, [`clang-format`]()                                        |
-| OCaml           | `.ml`                                                                                    | **[`ocp-indent`](https://www.typerex.org/ocp-indent.html)**                     |
-| Pawn            |                                                                                          | **[`Uncrustify`]()**                                                            |
-| Perl            | `.pl`, `.PL`, `.pm`, `.pod`, `.t`                                                        | **[`Perltidy`](http://perltidy.sourceforge.net/)**                              |
-| PHP             | `.php`, `.module`, `.inc`                                                                | **[`PHP-CS-Fixer`]()**, [`PHPCBF`](), [`hh_format`](http://hhvm.com/)           |
-| Puppet          | `.pp`                                                                                    | **[`puppet-lint`](http://puppet-lint.com/)**                                    |
-| Python          | `.py`                                                                                    | **[`autopep8`]()**, [`pybeautifier`](), [`yapf`]()                              |
-| R               | `.r`, `.R`                                                                               | **[`formatR`](https://github.com/yihui/formatR)**                               |
-| Riot.js         | `.tag`                                                                                   | **[`Pretty Diff`]()**                                                           |
-| Ruby            | `.rb`                                                                                    | **[`Rubocop`](https://github.com/bbatsov/rubocop)**, [`Ruby Beautify`]()        |
-| Rust            | `.rs`, `.rlib`                                                                           | **[`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)**                   |
-| Sass            | `.sass`                                                                                  | **[`SassConvert`]()**                                                           |
-| SCSS            | `.scss`                                                                                  | **[`Pretty Diff`]()**, [`CSScomb`](), [`SassConvert`]()                         |
-| Spacebars       |                                                                                          | **[`Pretty Diff`]()**                                                           |
-| SQL             | `.sql`                                                                                   | **[`sqlformat`]()**                                                             |
-| SVG             | `.svg`                                                                                   | **[`Pretty Diff`]()**                                                           |
-| Swig            | `.swig`                                                                                  | **[`Pretty Diff`]()**                                                           |
-| TSS             | `.tss`                                                                                   | **[`Pretty Diff`]()**                                                           |
-| Twig            | `.twig`                                                                                  | **[`Pretty Diff`]()**                                                           |
-| TypeScript      | `.ts`                                                                                    | **[`TypeScript Formatter`]()**                                                  |
-| UX Markup       | `.ux`                                                                                    | **[`Pretty Diff`]()**                                                           |
-| Vala            | `.vala`, `.vapi`                                                                         | **[`Uncrustify`]()**                                                            |
-| Visualforce     | `.page`                                                                                  | **[`Pretty Diff`]()**                                                           |
-| Vue             | `.vue`                                                                                   | **[`Vue Beautifier`]()**                                                        |
-| XML             | `.sld`, `.xml`, `.xhtml`, `.xsd`, `.xsl`, `.jsp`, `.gsp`, `.plist`, `.recipe`, `.config` | **[`Pretty Diff`]()**, [`JS Beautify`]()                                        |
-| XTemplate       | `.xtemplate`                                                                             | **[`Pretty Diff`]()**                                                           |
-| YAML            | `.yml`, `.yaml`                                                                          | **[`align-yaml`]()**                                                            |
+| Language        | File Extensions                                                                          | Supported Formatters                                                                                               |
+|-----------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| Apex            | `.cls`, `.trigger`                                                                       | **[`Uncrustify`][Uncrustify]**                                                                                     |
+| Arduino         | `.ino`, `.pde`                                                                           | **[`Uncrustify`][Uncrustify]**                                                                                     |
+| Bash            | `.bash`, `.sh`                                                                           | **[`beautysh`][beautysh]**                                                                                         |
+| C               | `.h`, `.c`, `.cl`                                                                        | **[`Uncrustify`][Uncrustify]**, [`clang-format`][clang-format]                                                     |
+| Coldfusion      | `.cfm`, `.cfml`, `.cfc`                                                                  | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| Clojure         | `.clj`, `.cljs`, `.edn`                                                                  | **[`cljfmt`][cljfmt]**                                                                                             |
+| CoffeeScript    | `.coffee`                                                                                | **[`coffee-fmt`][coffee-fmt]**, [`Coffee Formatter`][Coffee Formatter]                                             |
+| C++             | `.h`, `.hh`, `.cc`, `.cpp`, `.cxx`, `.C`, `.cu`, `.c++`, `.hpp`, `.hxx`, `.h++`, `.cuh`  | **[`Uncrustify`][Uncrustify]**, [`clang-format`][clang-format]                                                     |
+| Crystal         | `.cr`                                                                                    | **[`Crystal`](http://crystal-lang.org)**                                                                           |
+| C#              | `.cs`                                                                                    | **[`Uncrustify`][Uncrustify]**                                                                                     |
+| CSS             | `.css`                                                                                   | **[`JS Beautify`][JS Beautify]**, [`CSScomb`][CSScomb], [`Pretty Diff`][Pretty Diff], [`SassConvert`][SassConvert] |
+| CSV             | `.csv`                                                                                   | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| D               | `.d`                                                                                     | **[`Uncrustify`][Uncrustify]**, [`dfmt`](https://github.com/Hackerpilot/dfmt)                                      |
+| EJS             | `.ejs`                                                                                   | **[`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                     |
+| Elm             | `.elm`                                                                                   | **[`elm-format`](https://github.com/avh4/elm-format)**                                                             |
+| ERB             | `.erb`                                                                                   | **[`Pretty Diff`][Pretty Diff]**, [`HTML Beautifier`][HTML Beautifier]                                             |
+| Erlang          | `.erl`                                                                                   | **[`erl_tidy`](http://erlang.org/doc/man/erl_tidy.html)**                                                          |
+| Fortran         | `.f90`, `.F90`, `.f95`, `.F95`, `.f03`, `.F03`, `.f08`, `.F08`                           | **[`Fortran Beautifier`](https://www.gnu.org/software/emacs/)**                                                    |
+| gherkin         | `.feature`                                                                               | **[`Gherkin formatter`][Gherkin formatter]**                                                                       |
+| GLSL            | `.vert`, `.frag`                                                                         | **[`clang-format`][clang-format]**                                                                                 |
+| Go              | `.go`                                                                                    | **[`gofmt`](https://golang.org/cmd/gofmt/)**, [`goimports`][goimports]                                             |
+| Golang Template | `.gohtml`                                                                                | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| Handlebars      | `.hbs`, `.handlebars`                                                                    | **[`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                     |
+| Haskell         | `.hs`                                                                                    | **[`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell)**                                              |
+| HTML            | `.html`                                                                                  | **[`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                     |
+| Jade            | `.jade`, `.pug`                                                                          | **[`Pug Beautify`](https://github.com/vingorius/pug-beautify)**                                                    |
+| Java            | `.java`                                                                                  | **[`Uncrustify`][Uncrustify]**                                                                                     |
+| JavaScript      | `.js`                                                                                    | **[`JS Beautify`][JS Beautify]**, [`ESLint Fixer`][ESLint Fixer], [`JSCS Fixer`][JSCS Fixer], [`Pretty Diff`][Pretty Diff]  |
+| JSON            | `.json`                                                                                  | **[`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                     |
+| JSX             | `.jsx`, `.js`                                                                            | **[`Pretty Diff`][Pretty Diff]**, [`JS Beautify`][JS Beautify]                                                     |
+| LaTeX           | `.bib`, `.tex`, `.sty`, `.cls`, `.dtx`, `.ins`, `.bbx`, `.cbx`                           | **[`Latex Beautify`][Latex Beautify]**                                                                             |
+| LESS            | `.less`                                                                                  | **[`Pretty Diff`][Pretty Diff]**, [`CSScomb`][CSScomb]                                                             |
+| Lua             | `.lua`, `.ttslua`                                                                        | **[`Lua beautifier`][Lua beautifier]**                                                                             |
+| Markdown        | `.markdown`, `.md`                                                                       | **[`Tidy Markdown`][Tidy Markdown]**, [`Remark`](https://github.com/wooorm/remark)                                 |
+| Marko           | `.marko`                                                                                 | **[`Marko Beautifier`](https://github.com/marko-js/marko-prettyprint)**                                            |
+| Mustache        | `.mustache`                                                                              | **[`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                     |
+| Nginx           | `.conf`                                                                                  | **[`Nginx Beautify`](https://github.com/denysvitali/nginxbeautify)**                                               |
+| Nunjucks        | `.njk`, `.nunjucks`                                                                      | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| Objective-C     | `.m`, `.mm`, `.h`                                                                        | **[`Uncrustify`][Uncrustify]**, [`clang-format`][clang-format]                                                     |
+| OCaml           | `.ml`                                                                                    | **[`ocp-indent`](https://www.typerex.org/ocp-indent.html)**                                                        |
+| Pawn            |                                                                                          | **[`Uncrustify`][Uncrustify]**                                                                                     |
+| Perl            | `.pl`, `.PL`, `.pm`, `.pod`, `.t`                                                        | **[`Perltidy`](http://perltidy.sourceforge.net/)**                                                                 |
+| PHP             | `.php`, `.module`, `.inc`                                                                | **[`PHP-CS-Fixer`][PHP-CS-Fixer]**, [`PHPCBF`][PHPCBF], [`hh_format`](http://hhvm.com/)                            |
+| Puppet          | `.pp`                                                                                    | **[`puppet-lint`](http://puppet-lint.com/)**                                                                       |
+| Python          | `.py`                                                                                    | **[`autopep8`][autopep8]**, [`pybeautifier`][pybeautifier], [`yapf`][yapf]                                                 |
+| R               | `.r`, `.R`                                                                               | **[`formatR`](https://github.com/yihui/formatR)**                                                                  |
+| Riot.js         | `.tag`                                                                                   | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| Ruby            | `.rb`                                                                                    | **[`Rubocop`](https://github.com/bbatsov/rubocop)**, [`Ruby Beautify`][Ruby Beautify]                              |
+| Rust            | `.rs`, `.rlib`                                                                           | **[`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)**                                                      |
+| Sass            | `.sass`                                                                                  | **[`SassConvert`][SassConvert]**                                                                                   |
+| SCSS            | `.scss`                                                                                  | **[`Pretty Diff`][Pretty Diff]**, [`CSScomb`][CSScomb], [`SassConvert`][SassConvert]                               |
+| Spacebars       |                                                                                          | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| SQL             | `.sql`                                                                                   | **[`sqlformat`][sqlformat]**                                                                                       |
+| SVG             | `.svg`                                                                                   | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| Swig            | `.swig`                                                                                  | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| TSS             | `.tss`                                                                                   | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| Twig            | `.twig`                                                                                  | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| TypeScript      | `.ts`                                                                                    | **[`TypeScript Formatter`][TypeScript Formatter]**                                                                 |
+| UX Markup       | `.ux`                                                                                    | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| Vala            | `.vala`, `.vapi`                                                                         | **[`Uncrustify`][Uncrustify]**                                                                                     |
+| Visualforce     | `.page`                                                                                  | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| Vue             | `.vue`                                                                                   | **[`Vue Beautifier`][Vue Beautifier]**                                                                             |
+| XML             | `.sld`, `.xml`, `.xhtml`, `.xsd`, `.xsl`, `.jsp`, `.gsp`, `.plist`, `.recipe`, `.config` | **[`Pretty Diff`][Pretty Diff]**, [`JS Beautify`][JS Beautify]                                                     |
+| XTemplate       | `.xtemplate`                                                                             | **[`Pretty Diff`][Pretty Diff]**                                                                                   |
+| YAML            | `.yml`, `.yaml`                                                                          | **[`align-yaml`][align-yaml]**                                                                                     |
 
 ## License
 
 [MIT](LICENSE) © [Lu Yiming](https://github.com/luyiming)
 
 [autopep8]: https://github.com/hhatto/autopep8
-[SassConvert]:  "SassConvert"
 [Pretty Diff]: https://github.com/prettydiff/prettydiff
 [Uncrustify]: https://github.com/uncrustify/uncrustify
 [clang-format]: https://clang.llvm.org/docs/ClangFormat.html
