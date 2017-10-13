@@ -22,6 +22,7 @@
     "onLanguage:yaml",
     "onLanguage:python",
     "onLanguage:shellscript",
+    "onLanguage:clojure",
     "onCommand:code-formatter.run"
   ],
   "main": "./out/extension",
@@ -41,7 +42,8 @@
   "dependencies": {
     "@types/diff": "^3.2.2",
     "align-yaml": "^0.1.8",
-    "diff": "^3.4.0"
+    "diff": "^3.4.0",
+    "node-cljfmt": "^0.5.3-1"
   },
   "contributes": {
     "commands": [
@@ -73,19 +75,6 @@
           "default": "clang-format",
           "description": "Code formatter for c++ languague"
         },
-        "clang-format.style": {
-          "enum": [
-            "LLVM",
-            "Google",
-            "Chromium",
-            "Mozilla",
-            "WebKit",
-            "file"
-          ],
-          "type": "string",
-          "default": "LLVM",
-          "description": "Use `file` to load style configuration from .clang-format file located in one of the parent directories of the source file"
-        },
         "align-yaml.padding": {
           "type": "integer",
           "default": 0,
@@ -100,6 +89,19 @@
           "type": "integer",
           "default": 4,
           "description": "Sets the number of spaces to be used in indentation."
+        },
+        "clang-format.style": {
+          "enum": [
+            "LLVM",
+            "Google",
+            "Chromium",
+            "Mozilla",
+            "WebKit",
+            "file"
+          ],
+          "type": "string",
+          "default": "LLVM",
+          "description": "Use `file` to load style configuration from .clang-format file located in one of the parent directories of the source file"
         }
       }
     }

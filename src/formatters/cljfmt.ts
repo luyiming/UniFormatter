@@ -3,31 +3,30 @@
 import vscode = require('vscode');
 import path = require('path');
 import fs = require('fs');
-import { getBinPath } from './../util';
 import { Formatter } from './Formatter'
 
-export class BeautyshFormatter extends Formatter {
+export class CljfmtFormatter extends Formatter {
     public supporttedLanguages: string[];
     public url: string;
     public formatTool: string;
 
     constructor() {
         super();
-        this.supporttedLanguages = ['shellscript'];
-        this.url = 'https://github.com/bemeurer/beautysh';
-        this.formatTool = 'beautysh';
+        this.supporttedLanguages = ['clojure'];
+        this.url = 'https://www.npmjs.com/package/node-cljfmt';
+        this.formatTool = path.resolve(__dirname, "..", "..", "node_modules/.bin/cljfmt");
+        if (process.platform === 'win32')
+            this.formatTool += '.cmd';
     }
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
-        let formatToolBinPath = getBinPath(this.formatTool);
+        let formatToolBinPath = this.formatTool;
 
-        let indentSize = vscode.workspace.getConfiguration('beautysh', document.uri)['indentSize'];
-
-        // create backup file, because `beautysh` may modify the file in place
+        // create backup file, because `cljfmt` may modify the file in place
         let backupFile = document.fileName + '.tmp';
         fs.createReadStream(document.fileName).pipe(fs.createWriteStream(backupFile));
 
-        let formatFlags = ['--indent-size', indentSize, '--files']
+        let formatFlags = []
 
         return this._getEditsExternalInplace(document, formatToolBinPath, formatFlags, backupFile).then(result => {
             fs.unlink(backupFile, err => { if (err) console.log('error' + err) });
