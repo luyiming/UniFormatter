@@ -23,6 +23,7 @@
     "onLanguage:python",
     "onLanguage:shellscript",
     "onLanguage:clojure",
+    "onLanguage:coffeescript",
     "onCommand:code-formatter.run"
   ],
   "main": "./out/extension",
@@ -42,16 +43,15 @@
   "dependencies": {
     "@types/diff": "^3.2.2",
     "align-yaml": "^0.1.8",
+    "coffee-fmt": "^0.12.0",
     "diff": "^3.4.0",
     "node-cljfmt": "^0.5.3-1"
   },
   "contributes": {
-    "commands": [
-      {
-        "command": "code-formatter.run",
-        "title": "Format Document"
-      }
-    ],
+    "commands": [{
+      "command": "code-formatter.run",
+      "title": "Format Document"
+    }],
     "configuration": {
       "type": "object",
       "title": "Code Formatter Configuration",
@@ -102,6 +102,11 @@
           "type": "string",
           "default": "LLVM",
           "description": "Use `file` to load style configuration from .clang-format file located in one of the parent directories of the source file"
+        },
+        "coffee-fmt.indentSize": {
+          "type": "integer",
+          "default": 4,
+          "description": "Sets the number of spaces to be used in indentation."
         }
       }
     }

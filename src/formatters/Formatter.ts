@@ -96,9 +96,8 @@ export abstract class Formatter {
                     };
                     let textEdits: vscode.TextEdit[] = [];
 
-                    let fileEncoding: string = vscode.workspace.getConfiguration('files', document.uri)['encoding'];
                     // TODO: use async
-                    let data = fs.readFileSync(file, fileEncoding);
+                    let data = fs.readFileSync(file).toString();
 
                     let filePatch = formatToolOutputUniDiff ? getEditsFromUnifiedDiffStr(data)[0] : getEdits("dontcare", document.getText(), data);
 

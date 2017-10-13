@@ -8,6 +8,7 @@ import { AlignYamlFormatter } from './formatters/align-yaml'
 import { Autopep8Formatter } from './formatters/autopep8'
 import { BeautyshFormatter } from './formatters/beautysh'
 import { CljfmtFormatter } from './formatters/cljfmt'
+import { CoffeeFmtFormatter } from './formatters/coffee-fmt'
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -28,6 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('python', new UniDocumentFormattingEditProvider(new Autopep8Formatter())));
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('shellscript', new UniDocumentFormattingEditProvider(new BeautyshFormatter())));
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('clojure', new UniDocumentFormattingEditProvider(new CljfmtFormatter())));
+    context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('coffeescript', new UniDocumentFormattingEditProvider(new CoffeeFmtFormatter())));
 }
 
 // this method is called when your extension is deactivated
