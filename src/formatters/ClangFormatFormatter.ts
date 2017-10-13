@@ -22,10 +22,11 @@ export class ClangFormatFormatter extends Formatter {
 
         let formatterConfig = vscode.workspace.getConfiguration('clang-format', document.uri);
         let formatFlags = ['-style=' + formatterConfig['style']] || [];
-        return this._getDocumentFormattingEdits(document, formatToolBinPath, formatFlags, {}).then(null, err => {
+        return this._getEditsExternal(document, formatToolBinPath, formatFlags, {}).then(null, err => {
             if (typeof err === 'string' && err.startsWith('Missing tool.')) {
                 vscode.window.showInformationMessage(`Could not find \'${path.basename(formatToolBinPath)}\'.The program may not be installed.`);
             } else {
+                vscode.window.showErrorMessage(err);
                 console.log(err);
             }
             return [];

@@ -19,6 +19,7 @@
   ],
   "activationEvents": [
     "onLanguage:cpp",
+    "onLanguage:yaml",
     "onCommand:code-formatter.run"
   ],
   "main": "./out/extension",
@@ -37,38 +38,58 @@
   },
   "dependencies": {
     "@types/diff": "^3.2.2",
+    "align-yaml": "^0.1.8",
     "diff": "^3.4.0"
   },
   "contributes": {
-    "commands": [{
-      "command": "code-formatter.run",
-      "title": "Format Document"
-    }],
+    "commands": [
+      {
+        "command": "code-formatter.run",
+        "title": "Format Document"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "Code Formatter Configuration",
       "properties": {
         "c++.formatter": {
-          "enum": ["clang-format", "uncrusity"],
+          "enum": [
+            "clang-format",
+            "uncrusity"
+          ],
           "type": "string",
           "default": "clang-format",
           "description": "Code formatter for c++ languague",
           "scope": "resource"
         },
         "c.formatter": {
-          "enum": ["clang-format", "uncrusity"],
+          "enum": [
+            "clang-format",
+            "uncrusity"
+          ],
           "type": "string",
           "default": "clang-format",
           "description": "Code formatter for c++ languague"
         },
         "clang-format.style": {
-          "enum": ["LLVM", "Google", "Chromium", "Mozilla", "WebKit", "file"],
+          "enum": [
+            "LLVM",
+            "Google",
+            "Chromium",
+            "Mozilla",
+            "WebKit",
+            "file"
+          ],
           "type": "string",
           "default": "LLVM",
           "description": "Use `file` to load style configuration from .clang-format file located in one of the parent directories of the source file"
+        },
+        "align-yaml.padding": {
+          "type": "integer",
+          "default": 0,
+          "description": "The amount of padding to add next to each line. (Supported by align-yaml)"
         }
       }
     }
-
   }
 }

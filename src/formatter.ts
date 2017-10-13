@@ -5,10 +5,9 @@ import { Formatter } from './formatters/Formatter'
 import { ClangFormatFormatter } from './formatters/ClangFormatFormatter'
 
 export class UniDocumentFormattingEditProvider implements vscode.DocumentFormattingEditProvider {
-    private formatter: Formatter;
 
-    constructor() {
-        this.formatter = new ClangFormatFormatter();
+    constructor(private formatter: Formatter) {
+
     }
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken): Thenable<vscode.TextEdit[]> {

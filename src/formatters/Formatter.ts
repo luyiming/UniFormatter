@@ -14,9 +14,11 @@ export abstract class Formatter {
         });
     }
 
+    // implememted in subclass
+    // error should be handled inside
     public abstract getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]>;
 
-    protected _getDocumentFormattingEdits(document: vscode.TextDocument, formatToolBinPath: string, formatFlags: string[] = [], env: {} = {}, formatToolOutputUniDiff: boolean = false): Thenable<vscode.TextEdit[]> {
+    protected _getEditsExternal(document: vscode.TextDocument, formatToolBinPath: string, formatFlags: string[] = [], env: {} = {}, formatToolOutputUniDiff: boolean = false): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, reject) => {
             let filename = document.fileName;
 
@@ -44,6 +46,25 @@ export abstract class Formatter {
                     reject('Internal issues while getting diff from formatted content');
                 }
             });
+        });
+    }
+
+    protected _getEditsFromStr(oldStr: string, newStr: string, UniDiffOutput: boolean = false): Thenable<vscode.TextEdit[]> {
+        return new Promise((resolve, reject) => {
+
+            try {
+                let textEdits: vscode.TextEdit[] = [];
+                let filePatch = UniDiffOutput ? getEditsFromUnifiedDiffStr(newStr)[0] : getEdits("dontcare", oldStr, newStr);
+
+                filePatch.edits.forEach((edit) => {
+                    textEdits.push(edit.apply());
+                });
+
+                resolve(textEdits);
+            } catch (e) {
+                reject('Internal issues while getting diff from formatted content');
+            }
+
         });
     }
 }
