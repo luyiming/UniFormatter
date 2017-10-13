@@ -2,7 +2,13 @@
 
 import vscode = require('vscode');
 import cp = require('child_process');
+import fs = require('fs');
 import { isDiffToolAvailable, getEdits, getEditsFromUnifiedDiffStr } from './../diffUtils';
+
+type Params = {
+    env?: object;
+    formatToolOutputUniDiff?: boolean;
+}
 
 export abstract class Formatter {
 
@@ -20,12 +26,15 @@ export abstract class Formatter {
     // error should be handled inside
     public abstract getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]>;
 
-    protected _getEditsExternal(document: vscode.TextDocument, formatToolBinPath: string, formatFlags: string[] = [], env: {} = {}, formatToolOutputUniDiff: boolean = false): Thenable<vscode.TextEdit[]> {
+    protected _getEditsExternal(document: vscode.TextDocument, formatToolBinPath: string, formatFlags: string[] = [], params: Params = {}): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, reject) => {
 
             // let t0 = Date.now();
 
-            cp.execFile(formatToolBinPath, formatFlags, { env }, (err, stdout, stderr) => {
+            // default values
+            let { env = {}, formatToolOutputUniDiff = false } = params;
+
+            cp.execFile(formatToolBinPath, formatFlags, env, (err, stdout, stderr) => {
                 try {
                     if (err && (<any>err).code === 'ENOENT') {
                         return reject(this.MissingToolError);
@@ -66,6 +75,44 @@ export abstract class Formatter {
                 reject('Internal issues while getting diff from formatted content');
             }
 
+        });
+    }
+
+    protected _getEditsExternalInplace(document: vscode.TextDocument, formatToolBinPath: string, formatFlags: string[] = [], file: string, params: Params = {}): Thenable<vscode.TextEdit[]> {
+        return new Promise((resolve, reject) => {
+
+            // let t0 = Date.now();
+
+            // default values
+            let { env = {}, formatToolOutputUniDiff = false } = params;
+
+            cp.execFile(formatToolBinPath, [...formatFlags, file], env, (err, stdout, stderr) => {
+                try {
+                    if (err && (<any>err).code === 'ENOENT') {
+                        return reject(this.MissingToolError);
+                    }
+                    if (err) {
+                        return reject('Cannot format due to syntax errors.');
+                    };
+                    let textEdits: vscode.TextEdit[] = [];
+
+                    let fileEncoding: string = vscode.workspace.getConfiguration('files', document.uri)['encoding'];
+                    // TODO: use async
+                    let data = fs.readFileSync(file, fileEncoding);
+
+                    let filePatch = formatToolOutputUniDiff ? getEditsFromUnifiedDiffStr(data)[0] : getEdits("dontcare", document.getText(), data);
+
+                    filePatch.edits.forEach((edit) => {
+                        textEdits.push(edit.apply());
+                    });
+
+                    // let timeTaken = Date.now() - t0;
+
+                    return resolve(textEdits);
+                } catch (e) {
+                    reject('Internal issues while getting diff from formatted content');
+                }
+            });
         });
     }
 }

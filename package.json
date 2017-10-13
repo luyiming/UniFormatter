@@ -21,6 +21,7 @@
     "onLanguage:cpp",
     "onLanguage:yaml",
     "onLanguage:python",
+    "onLanguage:shellscript",
     "onCommand:code-formatter.run"
   ],
   "main": "./out/extension",
@@ -94,6 +95,11 @@
           "type": "integer",
           "default": 79,
           "description": "Maximum allowed line length"
+        },
+        "beautysh.indentSize": {
+          "type": "integer",
+          "default": 4,
+          "description": "Sets the number of spaces to be used in indentation."
         }
       }
     }
