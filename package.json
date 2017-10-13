@@ -3,8 +3,12 @@
   "displayName": "code-formatter",
   "description": "Universal code formatter for VS Code.",
   "version": "0.0.1",
-  "publisher": "luyiming",
   "license": "MIT",
+  "author": {
+    "name": "Lu Yiming",
+    "email": "luyimingchn@gmail.com",
+    "url": "https://github.com/luyiming"
+  },
   "engines": {
     "vscode": "^1.17.0"
   },
