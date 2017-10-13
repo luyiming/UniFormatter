@@ -21,8 +21,9 @@ export class ClangFormatFormatter extends Formatter {
         let formatToolBinPath = getBinPath(this.formatTool);
 
         let formatterConfig = vscode.workspace.getConfiguration('clang-format', document.uri);
-        let formatFlags = ['-style=' + formatterConfig['style']] || [];
-        return this._getEditsExternal(document, 'x' + formatToolBinPath, formatFlags, {}).then(null, err => {
+        let formatFlags = ['-style=' + formatterConfig['style'], document.fileName] || [document.fileName];
+
+        return this._getEditsExternal(document, formatToolBinPath, formatFlags, {}).then(null, err => {
             if (typeof err === 'string' && err.startsWith(this.MissingToolError)) {
                 vscode.window.showInformationMessage(`Could not find \'${path.basename(formatToolBinPath)}\'.The program may not be installed.`, 'More').then(selected => {
                     if (selected === 'More') {

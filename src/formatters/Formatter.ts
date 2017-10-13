@@ -22,11 +22,10 @@ export abstract class Formatter {
 
     protected _getEditsExternal(document: vscode.TextDocument, formatToolBinPath: string, formatFlags: string[] = [], env: {} = {}, formatToolOutputUniDiff: boolean = false): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, reject) => {
-            let filename = document.fileName;
 
             // let t0 = Date.now();
 
-            cp.execFile(formatToolBinPath, [...formatFlags, filename], { env }, (err, stdout, stderr) => {
+            cp.execFile(formatToolBinPath, formatFlags, { env }, (err, stdout, stderr) => {
                 try {
                     if (err && (<any>err).code === 'ENOENT') {
                         return reject(this.MissingToolError);
@@ -35,7 +34,7 @@ export abstract class Formatter {
                         return reject('Cannot format due to syntax errors.');
                     };
                     let textEdits: vscode.TextEdit[] = [];
-                    let filePatch = formatToolOutputUniDiff ? getEditsFromUnifiedDiffStr(stdout)[0] : getEdits(filename, document.getText(), stdout);
+                    let filePatch = formatToolOutputUniDiff ? getEditsFromUnifiedDiffStr(stdout)[0] : getEdits("dontcare", document.getText(), stdout);
 
                     filePatch.edits.forEach((edit) => {
                         textEdits.push(edit.apply());
