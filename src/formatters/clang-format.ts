@@ -13,7 +13,7 @@ export class ClangFormatFormatter extends Formatter {
     constructor() {
         super();
         this.supporttedLanguages = ['c', 'cpp', 'csharp', 'objective-c', 'java']; // D, Pawn, VALA
-        this.url = 'http://uncrustify.sourceforge.net/';
+        this.url = 'https://clang.llvm.org/docs/ClangFormat.html';
         this.formatTool = 'clang-format';
     }
 
@@ -22,9 +22,13 @@ export class ClangFormatFormatter extends Formatter {
 
         let formatterConfig = vscode.workspace.getConfiguration('clang-format', document.uri);
         let formatFlags = ['-style=' + formatterConfig['style']] || [];
-        return this._getEditsExternal(document, formatToolBinPath, formatFlags, {}).then(null, err => {
-            if (typeof err === 'string' && err.startsWith('Missing tool.')) {
-                vscode.window.showInformationMessage(`Could not find \'${path.basename(formatToolBinPath)}\'.The program may not be installed.`);
+        return this._getEditsExternal(document, 'x' + formatToolBinPath, formatFlags, {}).then(null, err => {
+            if (typeof err === 'string' && err.startsWith(this.MissingToolError)) {
+                vscode.window.showInformationMessage(`Could not find \'${path.basename(formatToolBinPath)}\'.The program may not be installed.`, 'More').then(selected => {
+                    if (selected === 'More') {
+                        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(this.url));
+                    }
+                });
             } else {
                 vscode.window.showErrorMessage(err);
                 console.log(err);

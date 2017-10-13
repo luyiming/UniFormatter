@@ -6,6 +6,8 @@ import { isDiffToolAvailable, getEdits, getEditsFromUnifiedDiffStr } from './../
 
 export abstract class Formatter {
 
+    protected MissingToolError: string = 'Missing tool';
+
     public formatDocument() {
         this.getDocumentFormattingEdits(vscode.window.activeTextEditor.document).then(edits => {
             let workspaceEdit = new vscode.WorkspaceEdit();
@@ -27,7 +29,7 @@ export abstract class Formatter {
             cp.execFile(formatToolBinPath, [...formatFlags, filename], { env }, (err, stdout, stderr) => {
                 try {
                     if (err && (<any>err).code === 'ENOENT') {
-                        return reject('Missing tool.');
+                        return reject(this.MissingToolError);
                     }
                     if (err) {
                         return reject('Cannot format due to syntax errors.');

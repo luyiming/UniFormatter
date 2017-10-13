@@ -3,7 +3,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { UniDocumentFormattingEditProvider } from './formatter';
-import { ClangFormatFormatter } from './formatters/ClangFormatFormatter'
+import { ClangFormatFormatter } from './formatters/clang-format'
 import { AlignYamlFormatter } from './formatters/align-yaml'
 
 // this method is called when your extension is activated

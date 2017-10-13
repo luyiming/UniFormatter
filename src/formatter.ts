@@ -2,7 +2,6 @@
 
 import vscode = require('vscode');
 import { Formatter } from './formatters/Formatter'
-import { ClangFormatFormatter } from './formatters/ClangFormatFormatter'
 
 export class UniDocumentFormattingEditProvider implements vscode.DocumentFormattingEditProvider {
 
