@@ -15,6 +15,7 @@ import { RubyBeautifyFormatter } from './ruby-beautify'
 import { UncrustifyFormatter } from './uncrustify'
 import { JSBeautifyFormatter } from './js-beautify'
 import { PrettyDiffFormatter } from './prettydiff'
+import { PugBeautifyFormatter } from './pug-beautify'
 
 let supportedLanguages = {
     "bat": false, "bibtex": false, "clojure": true, "coffeescript": true,
@@ -25,7 +26,7 @@ let supportedLanguages = {
     "json": true, "latex": false, "less": true, "lua": false,
     "makefile": false, "markdown": true, "objective-c": false, "objective-cpp": false,
     "perl": false, "perl6": false, "php": false, "powershell": false,
-    "jade": false, "python": true, "r": false, "razor": false,
+    "jade": true, "python": true, "r": false, "razor": false,
     "ruby": true, "rust": false, "scss": true, "sass": false,
     "shaderlab": false, "shellscript": true, "sql": false, "swift": false,
     "typescript": false, "tex": false, "vb": false, "xml": false,
@@ -44,7 +45,8 @@ let supportedFormatters = {
     "ruby-beautify": RubyBeautifyFormatter,
     "uncrustify": UncrustifyFormatter,
     "js-beautify": JSBeautifyFormatter,
-    "prettydiff": PrettyDiffFormatter
+    "prettydiff": PrettyDiffFormatter,
+    "pug-beautify": PugBeautifyFormatter
 };
 
 export class FormatterManager {

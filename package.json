@@ -33,6 +33,7 @@
     "onLanguage:ruby",
     "onLanguage:css",
     "onLanguage:html",
+    "onLanguage:jade",
     "onLanguage:json",
     "onLanguage:javascript",
     "onLanguage:less",
@@ -64,16 +65,15 @@
     "js-promisify": "^1.1.0",
     "node-cljfmt": "^0.5.3-1",
     "prettydiff2": "^2.2.7",
+    "pug-beautify": "^0.1.1",
     "temp": "^0.8.3",
     "tidy-markdown": "2.0.3"
   },
   "contributes": {
-    "commands": [
-      {
-        "command": "code-formatter.run",
-        "title": "Format Document"
-      }
-    ],
+    "commands": [{
+      "command": "code-formatter.run",
+      "title": "Format Document"
+    }],
     "configuration": {
       "type": "object",
       "title": "Code Formatter Configuration",
@@ -89,6 +89,7 @@
               "cpp",
               "css",
               "html",
+              "jade",
               "javascript",
               "json",
               "markdown",
@@ -147,6 +148,13 @@
           ],
           "default": "js-beautify",
           "description": "Formatter for html languague"
+        },
+        "jade.code-formatter": {
+          "enum": [
+            "pug-beautify"
+          ],
+          "default": "pug-beautify",
+          "description": "Formatter for Pug(jade) languague"
         },
         "javascript.code-formatter": {
           "enum": [

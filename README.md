@@ -32,7 +32,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | ~~Haskell~~   | **[`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell)**                                                                                            |
 | HTML          | **:white_check_mark: [`JS Beautify`][JS Beautify]**, :white_check_mark: [`Pretty Diff`][Pretty Diff]                                                             |
 | Ini           |                                                                                                                                                                  |
-| Jade          | **[`Pug Beautify`](https://github.com/vingorius/pug-beautify)**                                                                                                  |
+| Jade          | **:white_check_mark: [`Pug Beautify`](https://github.com/vingorius/pug-beautify)**                                                                               |
 | Java          | **:white_check_mark: [`Uncrustify`][Uncrustify]**                                                                                                                |
 | JavaScript    | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`ESLint Fixer`][ESLint Fixer], [`JSCS Fixer`][JSCS Fixer], :white_check_mark: [`Pretty Diff`][Pretty Diff] |
 | JSON          | **:white_check_mark: [`JS Beautify`][JS Beautify]**, :white_check_mark: [`Pretty Diff`][Pretty Diff]                                                             |
@@ -93,7 +93,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | PHP-CS-Fixer         | :x: TODO                |
 | PHPCBF               | :x: TODO                |
 | Pretty Diff          | :white_check_mark: Done |
-| Pug Beautify         | :x: TODO                |
+| Pug Beautify         | :white_check_mark: Done |
 | pybeautifier         | :x: TODO                |
 | Remark               | :x: TODO                |
 | Rubocop              | :x: TODO                |
