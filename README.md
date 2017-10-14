@@ -58,7 +58,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | SCSS          | **:white_check_mark: [`Pretty Diff`][Pretty Diff]**, :white_check_mark: [`CSScomb`][CSScomb], [`SassConvert`][SassConvert]                                       |
 | Shaderlab     |                                                                                                                                                                  |
 | Swift         |                                                                                                                                                                  |
-| SQL           | **[`sqlformat`][sqlformat]**                                                                                                                                     |
+| SQL           | **:white_check_mark: [`sqlformat`][sqlformat]**                                                                                                                  |
 | Tex           |                                                                                                                                                                  |
 | TypeScript    | **[`TypeScript Formatter`][TypeScript Formatter]**                                                                                                               |
 | VB            |                                                                                                                                                                  |
@@ -100,7 +100,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | Ruby Beautify        | :white_check_mark: Done |
 | rustfmt              | :x: TODO                |
 | SassConvert          | :x: TODO                |
-| sqlformat            | :x: TODO                |
+| sqlformat            | :white_check_mark: Done |
 | stylish-haskell      | :x: TODO                |
 | Tidy Markdown        | :white_check_mark: Done |
 | TypeScript Formatter | :x: TODO                |

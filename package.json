@@ -37,6 +37,7 @@
     "onLanguage:json",
     "onLanguage:javascript",
     "onLanguage:less",
+    "onLanguage:sql",
     "onLanguage:scss",
     "onCommand:code-formatter.run"
   ],
@@ -211,6 +212,13 @@
           ],
           "default": "beautysh",
           "description": "Code formatter for shellcript languague"
+        },
+        "sql.code-formatter": {
+          "enum": [
+            "sqlformat"
+          ],
+          "default": "sqlformat",
+          "description": "Code formatter for SQL languague"
         },
         "yaml.code-formatter": {
           "enum": [

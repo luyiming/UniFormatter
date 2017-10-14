@@ -16,6 +16,7 @@ import { UncrustifyFormatter } from './uncrustify'
 import { JSBeautifyFormatter } from './js-beautify'
 import { PrettyDiffFormatter } from './prettydiff'
 import { PugBeautifyFormatter } from './pug-beautify'
+import { SQLFormatFormatter } from './sqlformat'
 
 let supportedLanguages = {
     "bat": false, "bibtex": false, "clojure": true, "coffeescript": true,
@@ -28,7 +29,7 @@ let supportedLanguages = {
     "perl": false, "perl6": false, "php": false, "powershell": false,
     "jade": true, "python": true, "r": false, "razor": false,
     "ruby": true, "rust": false, "scss": true, "sass": false,
-    "shaderlab": false, "shellscript": true, "sql": false, "swift": false,
+    "shaderlab": false, "shellscript": true, "sql": true, "swift": false,
     "typescript": false, "tex": false, "vb": false, "xml": false,
     "xsl": false, "yaml": true
 };
@@ -46,7 +47,8 @@ let supportedFormatters = {
     "uncrustify": UncrustifyFormatter,
     "js-beautify": JSBeautifyFormatter,
     "prettydiff": PrettyDiffFormatter,
-    "pug-beautify": PugBeautifyFormatter
+    "pug-beautify": PugBeautifyFormatter,
+    "sqlformat": SQLFormatFormatter
 };
 
 export class FormatterManager {
