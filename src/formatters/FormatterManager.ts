@@ -1,18 +1,19 @@
 'use strict';
 
 import vscode = require('vscode');
-import { Formatter } from './formatters/Formatter'
-import { AlignYamlFormatter } from './formatters/align-yaml'
-import { Autopep8Formatter } from './formatters/autopep8'
-import { BeautyshFormatter } from './formatters/beautysh'
-import { ClangFormatFormatter } from './formatters/clang-format'
-import { CljfmtFormatter } from './formatters/cljfmt'
-import { CoffeeFmtFormatter } from './formatters/coffee-fmt'
-import { TidyMarkdownFormatter } from './formatters/tidy-markdown'
+import { Formatter } from './Formatter'
+import { AlignYamlFormatter } from './align-yaml'
+import { Autopep8Formatter } from './autopep8'
+import { BeautyshFormatter } from './beautysh'
+import { ClangFormatFormatter } from './clang-format'
+import { CljfmtFormatter } from './cljfmt'
+import { CoffeeFmtFormatter } from './coffee-fmt'
+import { TidyMarkdownFormatter } from './tidy-markdown'
+import { CSScombFormatter } from './csscomb'
 
 let supportedLanguages = {
     "bat": false, "bibtex": false, "clojure": true, "coffeescript": true,
-    "c": true, "cpp": true, "csharp": false, "css": false,
+    "c": true, "cpp": true, "csharp": false, "css": true,
     "diff": false, "dockerfile": false, "fsharp": false, "git-commit": false,
     "git-rebase": false, "go": false, "groovy": false, "handlebars": false,
     "html": false, "ini": false, "java": false, "javascript": false,
@@ -33,7 +34,8 @@ let supportedFormatters = {
     "clang-format": ClangFormatFormatter,
     "cljfmt": CljfmtFormatter,
     "coffee-fmt": CoffeeFmtFormatter,
-    "tidy-markdown": TidyMarkdownFormatter
+    "tidy-markdown": TidyMarkdownFormatter,
+    "CSScomb": CSScombFormatter
 };
 
 export class FormatterManager {
@@ -105,7 +107,7 @@ export class FormatterManager {
     }
 }
 
-export class UniDocumentFormattingEditProvider implements vscode.DocumentFormattingEditProvider {
+class UniDocumentFormattingEditProvider implements vscode.DocumentFormattingEditProvider {
 
     constructor(private formatter: Formatter) {
 

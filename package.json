@@ -50,6 +50,7 @@
     "@types/diff": "^3.2.2",
     "align-yaml": "^0.1.8",
     "coffee-fmt": "^0.12.0",
+    "csscomb": "^4.2.0",
     "diff": "^3.4.0",
     "js-promisify": "^1.1.0",
     "node-cljfmt": "^0.5.3-1",
@@ -111,6 +112,18 @@
           "description": "Formatter for c++ languague"
         },
         "cpp.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "css.code-formatter": {
+          "enum": [
+            "CSScomb"
+          ],
+          "default": "CSScomb",
+          "description": "Formatter for CSS languague"
+        },
+        "css.formatter-enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable/Disable formatter"

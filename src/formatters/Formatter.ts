@@ -37,8 +37,8 @@ export abstract class Formatter {
 
                 return resolve(textEdits);
             } catch (e) {
-                vscode.window.showErrorMessage('Error while getting TextEdits from str');
-                console.log('Error while getting TextEdits from str');
+                vscode.window.showErrorMessage('[getEdits] Error while getting TextEdits from str');
+                console.log('[getEdits] Error while getting TextEdits from str');
                 resolve([]);
             }
         });
@@ -58,8 +58,8 @@ export abstract class Formatter {
 
                 return resolve(textEdits);
             } catch (e) {
-                vscode.window.showErrorMessage('Error while getting TextEdits from str');
-                console.log('Error while getting TextEdits from str');
+                vscode.window.showErrorMessage('[getEditsFromDiff] Error while getting TextEdits from str');
+                console.log('[getEditsFromDiff] Error while getting TextEdits from str');
                 resolve([]);
             }
         });
