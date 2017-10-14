@@ -1,14 +1,70 @@
-# code-formatter README
+# UniFormatter
 
 ### This project is inspired by [atom-beautify](https://github.com/Glavin001/atom-beautify)
 
 ## Features
 
-> Format HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C, CoffeeScript, TypeScript, Coldfusion, SQL, and more in Visual Studio Code
+> Format HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C, CoffeeScript, TypeScript, SQL, and more in Visual Studio Code
 
-## Implementation status
+## Language Support
 
 Some of the supported formatters are developed for Node.js and are automatically installed when Code-Formatter is installed. However, other formatters are command-line interface (CLI) applications and require you to manually install them.
+
+| Language      | Supported Formatters                                                                                                                          |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| Bash          | **:white_check_mark: [`beautysh`][beautysh]**                                                                                                 |
+| Bat           |                                                                                                                                               |
+| Bibtex        |                                                                                                                                               |
+| C             | **:white_check_mark: [`Uncrustify`][Uncrustify]**, :white_check_mark: [`clang-format`][clang-format]                                          |
+| Clojure       | **:white_check_mark: [`cljfmt`][cljfmt]**                                                                                                     |
+| CoffeeScript  | **:white_check_mark: [`coffee-fmt`][coffee-fmt]**, [`Coffee Formatter`][Coffee Formatter]                                                     |
+| C++           | **:white_check_mark: [`clang-format`][clang-format]**, :white_check_mark: [`Uncrustify`][Uncrustify]                                          |
+| C#            | **:white_check_mark: [`Uncrustify`][Uncrustify]**                                                                                             |
+| CSS           | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff], [`SassConvert`][SassConvert]                               |
+| Dockerfile    | **[`dockfmt`][dockfmt]**                                                                                                                      |
+| ~~Erlang~~    | **[`erl_tidy`](http://erlang.org/doc/man/erl_tidy.html)**                                                                                     |
+| F#            |                                                                                                                                               |
+| ~~Fortran~~   | **[`Fortran Beautifier`](https://www.gnu.org/software/emacs/)**                                                                               |
+| ~~GLSL~~      | **:white_check_mark: [`clang-format`][clang-format]**                                                                                         |
+| Go            | **[`gofmt`](https://golang.org/cmd/gofmt/)**, [`goimports`][goimports]                                                                        |
+| Groovy        |                                                                                                                                               |
+| Handlebars    | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                             |
+| ~~Haskell~~   | **[`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell)**                                                                         |
+| HTML          | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                             |
+| Ini           |                                                                                                                                               |
+| Jade          | **[`Pug Beautify`](https://github.com/vingorius/pug-beautify)**                                                                               |
+| Java          | **:white_check_mark: [`Uncrustify`][Uncrustify]**                                                                                             |
+| JavaScript    | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`ESLint Fixer`][ESLint Fixer], [`JSCS Fixer`][JSCS Fixer], [`Pretty Diff`][Pretty Diff] |
+| JSON          | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                             |
+| LaTeX         | **[`Latex Beautify`][Latex Beautify]**                                                                                                        |
+| LESS          | **[`Pretty Diff`][Pretty Diff]**, :white_check_mark: [`CSScomb`][CSScomb]                                                                     |
+| Lua           | **[`Lua beautifier`][Lua beautifier]**                                                                                                        |
+| Makefile      |                                                                                                                                               |
+| Markdown      | **:white_check_mark: [`Tidy Markdown`][Tidy Markdown]**, [`Remark`](https://github.com/wooorm/remark)                                         |
+| Objective-C   | **:white_check_mark: [`Uncrustify`][Uncrustify]**, :white_check_mark: [`clang-format`][clang-format]                                          |
+| Objective-C++ | **:white_check_mark: [`Uncrustify`][Uncrustify]**, :white_check_mark: [`clang-format`][clang-format]                                          |
+| ~~OCaml~~     | **[`ocp-indent`](https://www.typerex.org/ocp-indent.html)**                                                                                   |
+| ~~Pawn~~      | **:white_check_mark: [`Uncrustify`][Uncrustify]**                                                                                             |
+| Perl          | **[`Perltidy`](http://perltidy.sourceforge.net/)**                                                                                            |
+| Perl6         | **[`Perltidy`](http://perltidy.sourceforge.net/)**                                                                                            |
+| PHP           | **[`PHP-CS-Fixer`][PHP-CS-Fixer]**, [`PHPCBF`][PHPCBF], [`hh_format`](http://hhvm.com/)                                                       |
+| Powershell    |                                                                                                                                               |
+| Python        | **:white_check_mark: [`autopep8`][autopep8]**, [`pybeautifier`][pybeautifier], [`yapf`][yapf]                                                 |
+| R             | **[`formatR`](https://github.com/yihui/formatR)**                                                                                             |
+| Razor         |                                                                                                                                               |
+| Ruby          | **[`Rubocop`](https://github.com/bbatsov/rubocop)**, :white_check_mark: [`Ruby Beautify`][Ruby Beautify]                                      |
+| Rust          | **[`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)**                                                                                 |
+| Sass          | **[`SassConvert`][SassConvert]**                                                                                                              |
+| SCSS          | **[`Pretty Diff`][Pretty Diff]**, :white_check_mark: [`CSScomb`][CSScomb], [`SassConvert`][SassConvert]                                       |
+| Shaderlab     |                                                                                                                                               |
+| Swift         |                                                                                                                                               |
+| SQL           | **[`sqlformat`][sqlformat]**                                                                                                                  |
+| Tex           |                                                                                                                                               |
+| TypeScript    | **[`TypeScript Formatter`][TypeScript Formatter]**                                                                                            |
+| VB            |                                                                                                                                               |
+| XML           | **[`Pretty Diff`][Pretty Diff]**, :white_check_mark: [`JS Beautify`][JS Beautify]                                                             |
+| XSL           |                                                                                                                                               |
+| YAML          | **:white_check_mark: [`align-yaml`][align-yaml]**                                                                                             |
 
 | Formatter            | status                  |
 |----------------------|-------------------------|
@@ -19,6 +75,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | cljfmt               | :white_check_mark: Done |
 | Coffee Formatter     | :x: TODO                |
 | coffee-fmt           | :white_check_mark: Done |
+| dockfmt              | :x: TODO                |
 | erl_tidy             | :x: TODO                |
 | ESLint Fixer         | :x: TODO                |
 | formatR              | :x: TODO                |
@@ -51,66 +108,6 @@ Some of the supported formatters are developed for Node.js and are automatically
 | Vue Beautifier       | :x: TODO                |
 | yapf                 | :x: TODO                |
 
-## Language Support
-
-
-
-| Language      | Supported Formatters                                                                                                                          |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| Bash          | **:white_check_mark: [`beautysh`][beautysh]**                                                                                                 |
-| Bat           |                                                                                                                                               |
-| Bibtex        |                                                                                                                                               |
-| C             | **:white_check_mark: [`Uncrustify`][Uncrustify]**, :white_check_mark: [`clang-format`][clang-format]                                          |
-| Clojure       | **:white_check_mark: [`cljfmt`][cljfmt]**                                                                                                     |
-| CoffeeScript  | **:white_check_mark: [`coffee-fmt`][coffee-fmt]**, [`Coffee Formatter`][Coffee Formatter]                                                     |
-| C++           | **:white_check_mark: [`clang-format`][clang-format]**, :white_check_mark: [`Uncrustify`][Uncrustify]                                          |
-| C#            | **:white_check_mark: [`Uncrustify`][Uncrustify]**                                                                                             |
-| CSS           | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff], [`SassConvert`][SassConvert]                               |
-| Dockerfile    |                                                                                                                                               |
-| ~~Erlang~~    | **[`erl_tidy`](http://erlang.org/doc/man/erl_tidy.html)**                                                                                     |
-| F#            |                                                                                                                                               |
-| ~~Fortran~~   | **[`Fortran Beautifier`](https://www.gnu.org/software/emacs/)**                                                                               |
-| ~~GLSL~~      | **:white_check_mark: [`clang-format`][clang-format]**                                                                                         |
-| Go            | **[`gofmt`](https://golang.org/cmd/gofmt/)**, [`goimports`][goimports]                                                                        |
-| Groovy        |                                                                                                                                               |
-| Handlebars    | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                             |
-| ~~Haskell~~   | **[`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell)**                                                                         |
-| HTML          | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                             |
-| Ini           |                                                                                                                                               |
-| Jade          | **[`Pug Beautify`](https://github.com/vingorius/pug-beautify)**                                                                               |
-| Java          | **:white_check_mark: [`Uncrustify`][Uncrustify]**                                                                                             |
-| JavaScript    | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`ESLint Fixer`][ESLint Fixer], [`JSCS Fixer`][JSCS Fixer], [`Pretty Diff`][Pretty Diff] |
-| JSON          | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`Pretty Diff`][Pretty Diff]                                                             |
-| LaTeX         | **[`Latex Beautify`][Latex Beautify]**                                                                                                        |
-| LESS          | **[`Pretty Diff`][Pretty Diff]**, :white_check_mark: [`CSScomb`][CSScomb]                                                                     |
-| Lua           | **[`Lua beautifier`][Lua beautifier]**                                                                                                        |
-| Makefile      |                                                                                                                                               |
-| Markdown      | **:white_check_mark: [`Tidy Markdown`][Tidy Markdown]**, [`Remark`](https://github.com/wooorm/remark)                                         |
-| Objective-C   | **:white_check_mark: [`Uncrustify`][Uncrustify]**, :white_check_mark: [`clang-format`][clang-format]                                          |
-| Objective-C++ |                                                                                                                                               |
-| ~~OCaml~~     | **[`ocp-indent`](https://www.typerex.org/ocp-indent.html)**                                                                                   |
-| ~~Pawn~~      | **:white_check_mark: [`Uncrustify`][Uncrustify]**                                                                                             |
-| Perl          | **[`Perltidy`](http://perltidy.sourceforge.net/)**                                                                                            |
-| Perl6         |                                                                                                                                               |
-| PHP           | **[`PHP-CS-Fixer`][PHP-CS-Fixer]**, [`PHPCBF`][PHPCBF], [`hh_format`](http://hhvm.com/)                                                       |
-| Powershell    |                                                                                                                                               |
-| Python        | **:white_check_mark: [`autopep8`][autopep8]**, [`pybeautifier`][pybeautifier], [`yapf`][yapf]                                                 |
-| R             | **[`formatR`](https://github.com/yihui/formatR)**                                                                                             |
-| Razor         |                                                                                                                                               |
-| Ruby          | **[`Rubocop`](https://github.com/bbatsov/rubocop)**, :white_check_mark: [`Ruby Beautify`][Ruby Beautify]                                      |
-| Rust          | **[`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)**                                                                                 |
-| Sass          | **[`SassConvert`][SassConvert]**                                                                                                              |
-| SCSS          | **[`Pretty Diff`][Pretty Diff]**, :white_check_mark: [`CSScomb`][CSScomb], [`SassConvert`][SassConvert]                                       |
-| Shaderlab     |                                                                                                                                               |
-| Swift         |                                                                                                                                               |
-| ~~Spacebars~~ | **[`Pretty Diff`][Pretty Diff]**                                                                                                              |
-| SQL           | **[`sqlformat`][sqlformat]**                                                                                                                  |
-| Tex           |                                                                                                                                               |
-| TypeScript    | **[`TypeScript Formatter`][TypeScript Formatter]**                                                                                            |
-| VB            |                                                                                                                                               |
-| XML           | **[`Pretty Diff`][Pretty Diff]**, :white_check_mark: [`JS Beautify`][JS Beautify]                                                             |
-| XSL           |                                                                                                                                               |
-| YAML          | **:white_check_mark: [`align-yaml`][align-yaml]**                                                                                             |
 
 ## License
 
@@ -143,3 +140,4 @@ Some of the supported formatters are developed for Node.js and are automatically
 [beautysh]: https://github.com/bemeurer/beautysh
 [cljfmt]: https://github.com/snoe/node-cljfmt
 [yapf]: https://github.com/google/yapf
+[dockfmt]: https://github.com/jessfraz/dockfmt
