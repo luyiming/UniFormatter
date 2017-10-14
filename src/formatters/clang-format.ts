@@ -11,8 +11,8 @@ export class ClangFormatFormatter extends Formatter {
     public url: string;
     private exe: Executable;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
         this.url = 'https://clang.llvm.org/docs/ClangFormat.html';
 
         this.exe = new Executable({

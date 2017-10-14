@@ -13,14 +13,15 @@ import { TidyMarkdownFormatter } from './tidy-markdown'
 import { CSScombFormatter } from './csscomb'
 import { RubyBeautifyFormatter } from './ruby-beautify'
 import { UncrustifyFormatter } from './uncrustify'
+import { JSBeautifyFormatter } from './js-beautify'
 
 let supportedLanguages = {
     "bat": false, "bibtex": false, "clojure": true, "coffeescript": true,
     "c": true, "cpp": true, "csharp": false, "css": true,
     "diff": false, "dockerfile": false, "fsharp": false, "git-commit": false,
     "git-rebase": false, "go": false, "groovy": false, "handlebars": false,
-    "html": false, "ini": false, "java": false, "javascript": false,
-    "json": false, "latex": false, "less": false, "lua": false,
+    "html": true, "ini": false, "java": false, "javascript": true,
+    "json": true, "latex": false, "less": false, "lua": false,
     "makefile": false, "markdown": true, "objective-c": false, "objective-cpp": false,
     "perl": false, "perl6": false, "php": false, "powershell": false,
     "jade": false, "python": true, "r": false, "razor": false,
@@ -40,7 +41,8 @@ let supportedFormatters = {
     "tidy-markdown": TidyMarkdownFormatter,
     "CSScomb": CSScombFormatter,
     "ruby-beautify": RubyBeautifyFormatter,
-    "uncrustify": UncrustifyFormatter
+    "uncrustify": UncrustifyFormatter,
+    "js-beautify": JSBeautifyFormatter
 };
 
 export class FormatterManager {
@@ -67,7 +69,7 @@ export class FormatterManager {
             vscode.window.showInformationMessage("missing formatter for language: " + languageId);
             return;
         }
-        let formatter: Formatter = new supportedFormatters[formatterId]();
+        let formatter: Formatter = new supportedFormatters[formatterId](languageId);
         formatter.formatDocument();
     }
 
@@ -101,7 +103,7 @@ export class FormatterManager {
                     console.log(`[debug] ${this.data[lanId].formatterId} -> ${formatterId} for ${lanId}`);
                     if (this.data[lanId].handler !== null)
                         this.data[lanId].handler.dispose();
-                    this.data[lanId].handler = vscode.languages.registerDocumentFormattingEditProvider(lanId, new UniDocumentFormattingEditProvider(new supportedFormatters[formatterId]()));
+                    this.data[lanId].handler = vscode.languages.registerDocumentFormattingEditProvider(lanId, new UniDocumentFormattingEditProvider(new supportedFormatters[formatterId](lanId)));
                     this.data[lanId].formatterId = formatterId;
                 }
             }

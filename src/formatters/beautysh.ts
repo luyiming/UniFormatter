@@ -12,8 +12,8 @@ export class BeautyshFormatter extends Formatter {
     public url: string;
     private exe: Executable;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
         this.url = 'https://github.com/bemeurer/beautysh';
 
         this.exe = new Executable({

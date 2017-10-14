@@ -10,8 +10,8 @@ export class UncrustifyFormatter extends Formatter {
 
     private exe: Executable;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
 
         this.exe = new Executable({
             name: 'uncrustify',

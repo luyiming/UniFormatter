@@ -7,8 +7,8 @@ import { Formatter } from './Formatter'
 export class CoffeeFmtFormatter extends Formatter {
     public url: string;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
         this.url = 'https://www.npmjs.com/package/coffee-fmt';
     }
 

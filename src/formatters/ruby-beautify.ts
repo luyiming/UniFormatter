@@ -10,8 +10,8 @@ export class RubyBeautifyFormatter extends Formatter {
 
     private exe: Executable;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
 
         this.exe = new Executable({
             name: 'ruby-beautify',

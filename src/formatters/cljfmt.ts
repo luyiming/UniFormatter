@@ -11,8 +11,8 @@ export class CljfmtFormatter extends Formatter {
     public url: string;
     private exe: Executable;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
         this.url = 'https://www.npmjs.com/package/node-cljfmt';
 
         let cmd =  path.resolve(__dirname, "..", "..", "node_modules/.bin/cljfmt");

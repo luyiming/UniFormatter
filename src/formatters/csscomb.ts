@@ -9,8 +9,8 @@ export class CSScombFormatter extends Formatter {
 
     public homepage: string;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
         this.homepage = 'https://github.com/csscomb/csscomb.js';
     }
 

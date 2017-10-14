@@ -8,8 +8,8 @@ export class AlignYamlFormatter extends Formatter {
 
     public homepage: string;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
         this.homepage = 'https://www.npmjs.com/package/align-yaml';
     }
 

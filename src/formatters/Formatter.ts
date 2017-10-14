@@ -11,6 +11,8 @@ import { debug } from './../util';
 
 export abstract class Formatter {
 
+    constructor(protected languageId: string) { }
+
     // implememted in subclass
     public abstract getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]>;
 

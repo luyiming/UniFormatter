@@ -8,8 +8,8 @@ export class TidyMarkdownFormatter extends Formatter {
 
     public url: string;
 
-    constructor() {
-        super();
+    constructor(languageId: string) {
+        super(languageId);
         this.url = 'https://github.com/slang800/tidy-markdown';
     }
 
