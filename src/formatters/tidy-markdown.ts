@@ -23,7 +23,10 @@ export class TidyMarkdownFormatter extends Formatter {
 
         let formattingStr: string = tidyMarkdown(document.getText(), options);
 
-        return this._getEditsFromStr(document.getText(), formattingStr).then(null, err => {
+        return this._getEditsFromStr(document.getText(), formattingStr).then(result => {
+            // console.log('tidy running: ' + result.length);
+            return result;
+        }, err => {
             console.log(err);
             vscode.window.showErrorMessage(err);
             return [];

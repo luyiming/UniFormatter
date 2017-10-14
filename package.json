@@ -55,34 +55,87 @@
     "tidy-markdown": "2.0.3"
   },
   "contributes": {
-    "commands": [
-      {
-        "command": "code-formatter.run",
-        "title": "Format Document"
-      }
-    ],
+    "commands": [{
+      "command": "code-formatter.run",
+      "title": "Format Document"
+    }],
     "configuration": {
       "type": "object",
       "title": "Code Formatter Configuration",
       "properties": {
-        "c++.formatter": {
+        "c.code-formatter": {
           "enum": [
             "clang-format",
             "uncrusity"
           ],
-          "type": "string",
-          "default": "clang-format",
-          "description": "Code formatter for c++ languague",
-          "scope": "resource"
-        },
-        "c.formatter": {
-          "enum": [
-            "clang-format",
-            "uncrusity"
-          ],
-          "type": "string",
           "default": "clang-format",
           "description": "Code formatter for c++ languague"
+        },
+        "c.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "clojure.code-formatter": {
+          "enum": [
+            "cljfmt"
+          ],
+          "default": "cljfmt",
+          "description": "Code formatter for clojure languague"
+        },
+        "clojure.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "coffeescript.code-formatter": {
+          "enum": [
+            "coffee-fmt"
+          ],
+          "default": "coffee-fmt",
+          "description": "Code formatter for coffeescript languague"
+        },
+        "coffeescript.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "cpp.code-formatter": {
+          "enum": [
+            "clang-format",
+            "uncrusity"
+          ],
+          "default": "clang-format",
+          "description": "Formatter for c++ languague"
+        },
+        "cpp.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "shellscript.code-formatter": {
+          "enum": [
+            "beautysh"
+          ],
+          "default": "beautysh",
+          "description": "Code formatter for shellcript languague"
+        },
+        "shellscript.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "yaml.code-formatter": {
+          "enum": [
+            "align-yaml"
+          ],
+          "default": "align-yaml",
+          "description": "Code formatter for yanl languague"
+        },
+        "yaml.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
         },
         "align-yaml.padding": {
           "type": "integer",
