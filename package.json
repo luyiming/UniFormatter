@@ -113,7 +113,7 @@
         "cpp.code-formatter": {
           "enum": [
             "clang-format",
-            "uncrusity"
+            "uncrustify"
           ],
           "default": "clang-format",
           "description": "Formatter for c++ languague"
@@ -192,6 +192,11 @@
           "type": "integer",
           "default": 4,
           "description": "Sets the number of spaces to be used in indentation."
+        },
+        "uncrustify.config": {
+          "type": "string",
+          "default": "path-to-config-file",
+          "description": "Path to uncrustify config file. Absolute path or relative path. Relative to workspace root."
         }
       }
     }

@@ -25,7 +25,8 @@ export class Executable {
                         return reject('Missing Tool');
                     }
                     if (err) {
-                        return reject('Cannot format due to syntax errors.');
+                        console.log(err);
+                        return reject('Internal issues while running format tool');
                     };
                     if (returnStdout)
                         return resolve(stdout);

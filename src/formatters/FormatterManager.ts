@@ -12,6 +12,7 @@ import { CoffeeFmtFormatter } from './coffee-fmt'
 import { TidyMarkdownFormatter } from './tidy-markdown'
 import { CSScombFormatter } from './csscomb'
 import { RubyBeautifyFormatter } from './ruby-beautify'
+import { UncrustifyFormatter } from './uncrustify'
 
 let supportedLanguages = {
     "bat": false, "bibtex": false, "clojure": true, "coffeescript": true,
@@ -38,7 +39,8 @@ let supportedFormatters = {
     "coffee-fmt": CoffeeFmtFormatter,
     "tidy-markdown": TidyMarkdownFormatter,
     "CSScomb": CSScombFormatter,
-    "ruby-beautify": RubyBeautifyFormatter
+    "ruby-beautify": RubyBeautifyFormatter,
+    "uncrustify": UncrustifyFormatter
 };
 
 export class FormatterManager {
