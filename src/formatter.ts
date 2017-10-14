@@ -26,7 +26,7 @@ let supportedLanguages = {
     "xsl": false, "yaml": true
 };
 
-let formatters = {
+let supportedFormatters = {
     "align-yaml": AlignYamlFormatter,
     "autopep8": Autopep8Formatter,
     "beautysh": BeautyshFormatter,
@@ -60,7 +60,7 @@ export class FormatterManager {
             vscode.window.showInformationMessage("missing formatter for language: " + languageId);
             return;
         }
-        let formatter: Formatter = new formatters[formatterId]();
+        let formatter: Formatter = new supportedFormatters[formatterId]();
         formatter.formatDocument();
     }
 
@@ -88,7 +88,7 @@ export class FormatterManager {
                     continue;
                 }
 
-                if (formatters[formatterId] === undefined) {
+                if (supportedFormatters[formatterId] === undefined) {
                     console.log('missing formatter: ' + formatterId);
                     continue;
                 }
@@ -97,7 +97,7 @@ export class FormatterManager {
                     console.log(`[debug] ${this.data[lanId].formatterId} -> ${formatterId} for ${lanId}`);
                     if (this.data[lanId].handler !== null)
                         this.data[lanId].handler.dispose();
-                    this.data[lanId].handler = vscode.languages.registerDocumentFormattingEditProvider(lanId, new UniDocumentFormattingEditProvider(new formatters[formatterId]()));
+                    this.data[lanId].handler = vscode.languages.registerDocumentFormattingEditProvider(lanId, new UniDocumentFormattingEditProvider(new supportedFormatters[formatterId]()));
                     this.data[lanId].formatterId = formatterId;
                 }
             }

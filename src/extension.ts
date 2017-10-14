@@ -8,6 +8,8 @@ import { FormatterManager } from './formatter';
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
+    let formatterManager = new FormatterManager();
+
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
@@ -16,8 +18,6 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(disposable);
-
-    let formatterManager = new FormatterManager();
 }
 
 // this method is called when your extension is deactivated
