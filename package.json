@@ -35,6 +35,8 @@
     "onLanguage:html",
     "onLanguage:json",
     "onLanguage:javascript",
+    "onLanguage:less",
+    "onLanguage:scss",
     "onCommand:code-formatter.run"
   ],
   "main": "./out/extension",
@@ -61,6 +63,7 @@
     "js-beautify": "^1.7.4",
     "js-promisify": "^1.1.0",
     "node-cljfmt": "^0.5.3-1",
+    "prettydiff2": "^2.2.7",
     "temp": "^0.8.3",
     "tidy-markdown": "2.0.3"
   },
@@ -159,6 +162,13 @@
           "default": "js-beautify",
           "description": "Formatter for json languague"
         },
+        "less.code-formatter": {
+          "enum": [
+            "prettydiff"
+          ],
+          "default": "prettydiff",
+          "description": "Formatter for less languague"
+        },
         "markdown.code-formatter": {
           "enum": [
             "tidy-markdown"
@@ -179,6 +189,13 @@
           ],
           "default": "ruby-beautify",
           "description": "Code formatter for ruby languague"
+        },
+        "scss.code-formatter": {
+          "enum": [
+            "prettydiff"
+          ],
+          "default": "prettydiff",
+          "description": "Formatter for scss languague"
         },
         "shellscript.code-formatter": {
           "enum": [

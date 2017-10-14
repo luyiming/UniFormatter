@@ -24,7 +24,9 @@ export class UncrustifyFormatter extends Formatter {
 
         let cfgFile = vscode.workspace.getConfiguration('uncrustify', document.uri)['config'];
 
-        console.log(vscode.workspace.workspaceFolders[0].uri.fsPath);
+        if (vscode.workspace.workspaceFolders == undefined) {
+            // TODO: no workspace folder
+        }
 
         cfgFile = path.resolve(vscode.workspace.workspaceFolders[0].uri.fsPath, cfgFile);
 
