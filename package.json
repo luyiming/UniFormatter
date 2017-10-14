@@ -51,7 +51,9 @@
     "align-yaml": "^0.1.8",
     "coffee-fmt": "^0.12.0",
     "diff": "^3.4.0",
+    "js-promisify": "^1.1.0",
     "node-cljfmt": "^0.5.3-1",
+    "temp": "^0.8.3",
     "tidy-markdown": "2.0.3"
   },
   "contributes": {
@@ -109,6 +111,30 @@
           "description": "Formatter for c++ languague"
         },
         "cpp.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "markdown.code-formatter": {
+          "enum": [
+            "tidy-markdown"
+          ],
+          "default": "tidy-markdown",
+          "description": "Code formatter for markdown languague"
+        },
+        "markdown.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "python.code-formatter": {
+          "enum": [
+            "autopep8"
+          ],
+          "default": "autopep8",
+          "description": "Code formatter for python languague"
+        },
+        "python.formatter-enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable/Disable formatter"

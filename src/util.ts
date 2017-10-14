@@ -45,3 +45,7 @@ export function getBinPath(binname: string): string {
     // Else return the binary name directly (this will likely always fail downstream)
     return binname;
 }
+
+export function debug(...infos: string[]) {
+    console.log('[debug] ' + infos.join(' '));
+}

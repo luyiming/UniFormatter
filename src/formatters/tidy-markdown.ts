@@ -5,12 +5,11 @@ import tidyMarkdown = require('tidy-markdown');
 import { Formatter } from './Formatter'
 
 export class TidyMarkdownFormatter extends Formatter {
-    public supporttedLanguages: string[];
+
     public url: string;
 
     constructor() {
         super();
-        this.supporttedLanguages = ['markdown'];
         this.url = 'https://github.com/slang800/tidy-markdown';
     }
 
@@ -21,15 +20,6 @@ export class TidyMarkdownFormatter extends Formatter {
 
         };
 
-        let formattingStr: string = tidyMarkdown(document.getText(), options);
-
-        return this._getEditsFromStr(document.getText(), formattingStr).then(result => {
-            // console.log('tidy running: ' + result.length);
-            return result;
-        }, err => {
-            console.log(err);
-            vscode.window.showErrorMessage(err);
-            return [];
-        });
+        return this.getEdits(document.getText(), tidyMarkdown(document.getText(), options));
     }
 }

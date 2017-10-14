@@ -5,12 +5,10 @@ import fmt = require('coffee-fmt')
 import { Formatter } from './Formatter'
 
 export class CoffeeFmtFormatter extends Formatter {
-    public supporttedLanguages: string[];
     public url: string;
 
     constructor() {
         super();
-        this.supporttedLanguages = ['coffeescript'];
         this.url = 'https://www.npmjs.com/package/coffee-fmt';
     }
 
@@ -31,10 +29,6 @@ export class CoffeeFmtFormatter extends Formatter {
             vscode.window.showErrorMessage(err);
         }
 
-        return this._getEditsFromStr(document.getText(), formattingStr).then(null, err => {
-            console.log(err);
-            vscode.window.showErrorMessage(err);
-            return [];
-        });
+        return this.getEdits(document.getText(), formattingStr);
     }
 }

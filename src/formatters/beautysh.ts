@@ -5,47 +5,33 @@ import path = require('path');
 import fs = require('fs');
 import { getBinPath } from './../util';
 import { Formatter } from './Formatter'
+import { Executable } from './executable'
 
 export class BeautyshFormatter extends Formatter {
-    public supporttedLanguages: string[];
+
     public url: string;
-    public formatTool: string;
+    private exe: Executable;
 
     constructor() {
         super();
-        this.supporttedLanguages = ['shellscript'];
         this.url = 'https://github.com/bemeurer/beautysh';
-        this.formatTool = 'beautysh';
+
+        this.exe = new Executable({
+            name: 'beautysh',
+            cmd: getBinPath('beautysh'),
+            homepage: 'https://github.com/bemeurer/beautysh'
+        });
     }
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
-        let formatToolBinPath = getBinPath(this.formatTool);
 
         let indentSize = vscode.workspace.getConfiguration('beautysh', document.uri)['indentSize'];
 
+        let args = ['--indent-size', indentSize, '--files']
+
         // create backup file, because `beautysh` may modify the file in place
-        let backupFile = document.fileName + '.tmp';
-        fs.createReadStream(document.fileName).pipe(fs.createWriteStream(backupFile));
-
-        let formatFlags = ['--indent-size', indentSize, '--files']
-
-        return this._getEditsExternalInplace(document, formatToolBinPath, formatFlags, backupFile).then(result => {
-            fs.unlink(backupFile, err => { if (err) console.log('error' + err) });
-            return result;
-        }, err => {
-            if (typeof err === 'string' && err.startsWith(this.MissingToolError)) {
-                vscode.window.showInformationMessage(`Could not find \'${path.basename(formatToolBinPath)}\'. The program may not be installed.`, 'More').then(selected => {
-                    if (selected === 'More') {
-                        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(this.url));
-                    }
-                });
-            } else {
-                vscode.window.showErrorMessage(err);
-                console.log(err);
-            }
-            return [];
-        });
-
-
+        return this.tempFile("code-formatter-temp", document.getText())
+            .then(tmpFilePath => this.exe.run([...args, tmpFilePath], {}, false).then(() => this.readFile(tmpFilePath)))
+            .then(str => this.getEdits(document.getText(), str));
     }
 }

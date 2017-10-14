@@ -4,37 +4,30 @@ import vscode = require('vscode');
 import path = require('path');
 import { getBinPath } from './../util';
 import { Formatter } from './Formatter'
+import { Executable } from './executable'
 
 export class ClangFormatFormatter extends Formatter {
-    public supporttedLanguages: string[];
+
     public url: string;
-    public formatTool: string;
+    private exe: Executable;
 
     constructor() {
         super();
-        this.supporttedLanguages = ['c', 'cpp', 'csharp', 'objective-c', 'java']; // D, Pawn, VALA
         this.url = 'https://clang.llvm.org/docs/ClangFormat.html';
-        this.formatTool = 'clang-format';
+
+        this.exe = new Executable({
+            name: 'clang-format',
+            cmd: getBinPath('clang-format'),
+            homepage: 'https://clang.llvm.org/docs/ClangFormat.html'
+        });
     }
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
-        let formatToolBinPath = getBinPath(this.formatTool);
 
         let formatterConfig = vscode.workspace.getConfiguration('clang-format', document.uri);
-        let formatFlags = ['-style=' + formatterConfig['style'], document.fileName] || [document.fileName];
+        let args = ['-style=' + formatterConfig['style'], document.fileName] || [document.fileName];
 
-        return this._getEditsExternal(document, formatToolBinPath, formatFlags, {}).then(null, err => {
-            if (typeof err === 'string' && err.startsWith(this.MissingToolError)) {
-                vscode.window.showInformationMessage(`Could not find \'${path.basename(formatToolBinPath)}\'. The program may not be installed.`, 'More').then(selected => {
-                    if (selected === 'More') {
-                        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(this.url));
-                    }
-                });
-            } else {
-                vscode.window.showErrorMessage(err);
-                console.log(err);
-            }
-            return [];
-        });
+        return this.exe.run(args, {}, true)
+            .then(str => this.getEdits(document.getText(), str));
     }
 }

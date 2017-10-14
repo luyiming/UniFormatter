@@ -4,39 +4,31 @@ import vscode = require('vscode');
 import path = require('path');
 import { getBinPath } from './../util';
 import { Formatter } from './Formatter'
+import { Executable } from './executable'
 
 export class Autopep8Formatter extends Formatter {
-    public supporttedLanguages: string[];
-    public url: string;
-    public formatTool: string;
+
+    private exe: Executable;
 
     constructor() {
         super();
-        this.supporttedLanguages = ['python'];
-        this.url = 'https://github.com/hhatto/autopep8';
-        this.formatTool = 'autopep8';
+
+        this.exe = new Executable({
+            name: 'autopep8',
+            cmd: getBinPath('autopep8'),
+            homepage: 'https://github.com/hhatto/autopep8'
+        });
     }
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
-        let formatToolBinPath = getBinPath(this.formatTool);
 
         let maxline = vscode.workspace.getConfiguration('autopep8', document.uri)['maxline'];
 
         // -d: use unified diff output
         let formatFlags = ['-d', '--max-line-length', maxline, document.fileName]
 
-        return this._getEditsExternal(document, formatToolBinPath, formatFlags, {formatToolOutputUniDiff: true}).then(null, err => {
-            if (typeof err === 'string' && err.startsWith(this.MissingToolError)) {
-                vscode.window.showInformationMessage(`Could not find \'${path.basename(formatToolBinPath)}\'. The program may not be installed.`, 'More').then(selected => {
-                    if (selected === 'More') {
-                        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(this.url));
-                    }
-                });
-            } else {
-                vscode.window.showErrorMessage(err);
-                console.log(err);
-            }
-            return [];
-        });
+        return this.exe.run(formatFlags, {}, true)
+            .then(str => this.getEditsFromDiff(str));
+
     }
 }
