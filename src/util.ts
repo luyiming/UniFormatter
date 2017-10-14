@@ -6,8 +6,8 @@
 import fs = require('fs');
 import path = require('path');
 
-export function getBinPathFromEnvVar(toolName: string, envVarValue: string): string {
-    toolName = correctBinname(toolName);
+export function getBinPathFromEnvVar(toolName: string, envVarValue: string, ext: string = '.exe'): string {
+    toolName = correctBinname(toolName, ext);
     if (envVarValue) {
         let paths = envVarValue.split(path.delimiter);
         for (let i = 0; i < paths.length; i++) {
@@ -20,9 +20,9 @@ export function getBinPathFromEnvVar(toolName: string, envVarValue: string): str
     return null;
 }
 
-function correctBinname(binname: string) {
+function correctBinname(binname: string, ext: string = '.exe') {
     if (process.platform === 'win32')
-        return binname + '.exe';
+        return binname + ext;
     else
         return binname;
 }
@@ -35,9 +35,9 @@ function fileExists(filePath: string): boolean {
     }
 }
 
-export function getBinPath(binname: string): string {
+export function getBinPath(binname: string, ext: string = '.exe'): string {
     // Search PATH
-    let pathFromPath = getBinPathFromEnvVar(binname, process.env['PATH']);
+    let pathFromPath = getBinPathFromEnvVar(binname, process.env['PATH'], ext);
     if (pathFromPath) {
         return pathFromPath;
     }

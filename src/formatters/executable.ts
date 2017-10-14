@@ -46,7 +46,7 @@ export class Executable {
                 vscode.window.showErrorMessage(err);
                 console.log(err);
             }
-            return "";
+            return undefined;
         });
     }
 

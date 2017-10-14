@@ -26,6 +26,8 @@ export abstract class Formatter {
     // get TextEdits from two strings
     protected getEdits(oldStr: string, newStr: string): Promise<vscode.TextEdit[]> {
         return new Promise((resolve, reject) => {
+            if (oldStr == undefined || oldStr == "")
+                return resolve([]);
             try {
                 let textEdits: vscode.TextEdit[] = [];
 
@@ -47,6 +49,8 @@ export abstract class Formatter {
     // get TextEdits from unified diff string
     protected getEditsFromDiff(unifiedDiffStr: string): Promise<vscode.TextEdit[]> {
         return new Promise((resolve, reject) => {
+            if (unifiedDiffStr == undefined || unifiedDiffStr == "")
+                return resolve([]);
             try {
                 let textEdits: vscode.TextEdit[] = [];
 

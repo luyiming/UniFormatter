@@ -20,7 +20,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | Coffee Formatter     | :x: TODO                |
 | coffee-fmt           | :white_check_mark: Done |
 | Crystal              | :x: TODO                |
-| CSScomb              | :x: TODO                |
+| CSScomb              | :white_check_mark: Done|
 | dfmt                 | :x: TODO                |
 | elm-format           | :x: TODO                |
 | erl_tidy             | :x: TODO                |
@@ -48,7 +48,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | pybeautifier         | :x: TODO                |
 | Remark               | :x: TODO                |
 | Rubocop              | :x: TODO                |
-| Ruby Beautify        | :x: TODO                |
+| Ruby Beautify        | :white_check_mark: Done |
 | rustfmt              | :x: TODO                |
 | SassConvert          | :x: TODO                |
 | sqlformat            | :x: TODO                |

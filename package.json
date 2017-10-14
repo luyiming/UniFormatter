@@ -30,6 +30,8 @@
     "onLanguage:clojure",
     "onLanguage:coffeescript",
     "onLanguage:markdown",
+    "onLanguage:ruby",
+    "onLanguage:css",
     "onCommand:code-formatter.run"
   ],
   "main": "./out/extension",
@@ -148,6 +150,18 @@
           "description": "Code formatter for python languague"
         },
         "python.formatter-enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable formatter"
+        },
+        "ruby.code-formatter": {
+          "enum": [
+            "ruby-beautify"
+          ],
+          "default": "ruby-beautify",
+          "description": "Code formatter for ruby languague"
+        },
+        "ruby.formatter-enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable/Disable formatter"

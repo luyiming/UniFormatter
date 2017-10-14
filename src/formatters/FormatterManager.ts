@@ -10,6 +10,7 @@ import { CljfmtFormatter } from './cljfmt'
 import { CoffeeFmtFormatter } from './coffee-fmt'
 import { TidyMarkdownFormatter } from './tidy-markdown'
 import { CSScombFormatter } from './csscomb'
+import { RubyBeautifyFormatter } from './ruby-beautify'
 
 let supportedLanguages = {
     "bat": false, "bibtex": false, "clojure": true, "coffeescript": true,
@@ -21,7 +22,7 @@ let supportedLanguages = {
     "makefile": false, "markdown": true, "objective-c": false, "objective-cpp": false,
     "perl": false, "perl6": false, "php": false, "powershell": false,
     "jade": false, "python": true, "r": false, "razor": false,
-    "ruby": false, "rust": false, "scss": false, "sass": false,
+    "ruby": true, "rust": false, "scss": false, "sass": false,
     "shaderlab": false, "shellscript": true, "sql": false, "swift": false,
     "typescript": false, "tex": false, "vb": false, "xml": false,
     "xsl": false, "yaml": true
@@ -35,7 +36,8 @@ let supportedFormatters = {
     "cljfmt": CljfmtFormatter,
     "coffee-fmt": CoffeeFmtFormatter,
     "tidy-markdown": TidyMarkdownFormatter,
-    "CSScomb": CSScombFormatter
+    "CSScomb": CSScombFormatter,
+    "ruby-beautify": RubyBeautifyFormatter
 };
 
 export class FormatterManager {
