@@ -68,6 +68,26 @@
       "type": "object",
       "title": "Code Formatter Configuration",
       "properties": {
+        "code-formatter.disable": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "c",
+              "clojure",
+              "coffeescript",
+              "cpp",
+              "css",
+              "markdown",
+              "python",
+              "ruby",
+              "shellscript",
+              "yaml"
+            ]
+          },
+          "default": ["css"],
+          "description": "Disable formatter for specific languages"
+        },
         "c.code-formatter": {
           "enum": [
             "clang-format",
@@ -76,11 +96,6 @@
           "default": "clang-format",
           "description": "Code formatter for c++ languague"
         },
-        "c.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
-        },
         "clojure.code-formatter": {
           "enum": [
             "cljfmt"
@@ -88,22 +103,12 @@
           "default": "cljfmt",
           "description": "Code formatter for clojure languague"
         },
-        "clojure.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
-        },
         "coffeescript.code-formatter": {
           "enum": [
             "coffee-fmt"
           ],
           "default": "coffee-fmt",
           "description": "Code formatter for coffeescript languague"
-        },
-        "coffeescript.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
         },
         "cpp.code-formatter": {
           "enum": [
@@ -113,22 +118,12 @@
           "default": "clang-format",
           "description": "Formatter for c++ languague"
         },
-        "cpp.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
-        },
         "css.code-formatter": {
           "enum": [
             "CSScomb"
           ],
           "default": "CSScomb",
           "description": "Formatter for CSS languague"
-        },
-        "css.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
         },
         "markdown.code-formatter": {
           "enum": [
@@ -137,22 +132,12 @@
           "default": "tidy-markdown",
           "description": "Code formatter for markdown languague"
         },
-        "markdown.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
-        },
         "python.code-formatter": {
           "enum": [
             "autopep8"
           ],
           "default": "autopep8",
           "description": "Code formatter for python languague"
-        },
-        "python.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
         },
         "ruby.code-formatter": {
           "enum": [
@@ -161,11 +146,6 @@
           "default": "ruby-beautify",
           "description": "Code formatter for ruby languague"
         },
-        "ruby.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
-        },
         "shellscript.code-formatter": {
           "enum": [
             "beautysh"
@@ -173,22 +153,12 @@
           "default": "beautysh",
           "description": "Code formatter for shellcript languague"
         },
-        "shellscript.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
-        },
         "yaml.code-formatter": {
           "enum": [
             "align-yaml"
           ],
           "default": "align-yaml",
           "description": "Code formatter for yanl languague"
-        },
-        "yaml.formatter-enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable formatter"
         },
         "align-yaml.padding": {
           "type": "integer",

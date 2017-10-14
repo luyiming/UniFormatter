@@ -1,6 +1,7 @@
 'use strict';
 
 import vscode = require('vscode');
+import { debug } from './../util';
 import { Formatter } from './Formatter'
 import { AlignYamlFormatter } from './align-yaml'
 import { Autopep8Formatter } from './autopep8'
@@ -69,21 +70,18 @@ export class FormatterManager {
     }
 
     private updateConfig() {
+        let disabledLanguage: string[] = vscode.workspace.getConfiguration("code-formatter", vscode.window.activeTextEditor.document.uri).get('disable');
         for (let lanId in supportedLanguages) {
             if (supportedLanguages[lanId] === true) {
                 let formatterId: string = vscode.workspace.getConfiguration(lanId, vscode.window.activeTextEditor.document.uri).get('code-formatter');
-                let enable: boolean = vscode.workspace.getConfiguration(lanId, vscode.window.activeTextEditor.document.uri).get("formatter-enable");
+                let disable = disabledLanguage.indexOf(lanId) > -1;
 
-                if (enable === undefined) {
-                    console.log('error: no enable option for ' + lanId);
-                    continue;
-                }
-
-                if (enable === false) {
+                if (disable) {
                     if (this.data[lanId].handler !== null) {
                         this.data[lanId].handler.dispose();
                         this.data[lanId].handler = null;
                     }
+                    debug('disable language:', lanId);
                     continue;
                 }
 

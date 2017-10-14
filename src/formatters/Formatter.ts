@@ -26,7 +26,7 @@ export abstract class Formatter {
     // get TextEdits from two strings
     protected getEdits(oldStr: string, newStr: string): Promise<vscode.TextEdit[]> {
         return new Promise((resolve, reject) => {
-            if (oldStr == undefined || oldStr == "")
+            if (oldStr == undefined || oldStr == "" || newStr == undefined || newStr == "")
                 return resolve([]);
             try {
                 let textEdits: vscode.TextEdit[] = [];
