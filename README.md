@@ -8,7 +8,7 @@
 
 ## Language Support
 
-Some of the supported formatters are developed for Node.js and are automatically installed when Code-Formatter is installed. However, other formatters are command-line interface (CLI) applications and require you to manually install them.
+Some of the supported formatters are developed for Node.js and are automatically installed when UniFormatter is installed. However, other formatters are command-line interface (CLI) applications and require you to manually install them.
 
 | Language      | Supported Formatters                                                                                                                                             |
 |---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -1,6 +1,6 @@
 {
-  "name": "code-formatter",
-  "displayName": "code-formatter",
+  "name": "uniformatter",
+  "displayName": "UniFormatter",
   "description": "Universal code formatter for VS Code.",
   "version": "0.0.1",
   "license": "MIT",
