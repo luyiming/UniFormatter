@@ -39,6 +39,7 @@
     "onLanguage:less",
     "onLanguage:sql",
     "onLanguage:scss",
+    "onLanguage:latex",
     "onCommand:code-formatter.run"
   ],
   "main": "./out/extension",
@@ -170,6 +171,13 @@
           ],
           "default": "js-beautify",
           "description": "Formatter for json languague"
+        },
+        "latex.code-formatter": {
+          "enum": [
+            "latexindent"
+          ],
+          "default": "latexindent",
+          "description": "Formatter for LaTeX languague"
         },
         "less.code-formatter": {
           "enum": [

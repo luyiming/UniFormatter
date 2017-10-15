@@ -17,6 +17,7 @@ import { JSBeautifyFormatter } from './js-beautify'
 import { PrettyDiffFormatter } from './prettydiff'
 import { PugBeautifyFormatter } from './pug-beautify'
 import { SQLFormatFormatter } from './sqlformat'
+import { LatexindentFormatter } from './latexindent'
 
 let supportedLanguages = {
     "bat": false, "bibtex": false, "clojure": true, "coffeescript": true,
@@ -24,7 +25,7 @@ let supportedLanguages = {
     "diff": false, "dockerfile": false, "fsharp": false, "git-commit": false,
     "git-rebase": false, "go": false, "groovy": false, "handlebars": false,
     "html": true, "ini": false, "java": false, "javascript": true,
-    "json": true, "latex": false, "less": true, "lua": false,
+    "json": true, "latex": true, "less": true, "lua": false,
     "makefile": false, "markdown": true, "objective-c": false, "objective-cpp": false,
     "perl": false, "perl6": false, "php": false, "powershell": false,
     "jade": true, "python": true, "r": false, "razor": false,
@@ -48,7 +49,8 @@ let supportedFormatters = {
     "js-beautify": JSBeautifyFormatter,
     "prettydiff": PrettyDiffFormatter,
     "pug-beautify": PugBeautifyFormatter,
-    "sqlformat": SQLFormatFormatter
+    "sqlformat": SQLFormatFormatter,
+    "latexindent": LatexindentFormatter
 };
 
 export class FormatterManager {

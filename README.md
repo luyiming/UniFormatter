@@ -36,7 +36,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | Java          | **:white_check_mark: [`Uncrustify`][Uncrustify]**                                                                                                                |
 | JavaScript    | **:white_check_mark: [`JS Beautify`][JS Beautify]**, [`ESLint Fixer`][ESLint Fixer], [`JSCS Fixer`][JSCS Fixer], :white_check_mark: [`Pretty Diff`][Pretty Diff] |
 | JSON          | **:white_check_mark: [`JS Beautify`][JS Beautify]**, :white_check_mark: [`Pretty Diff`][Pretty Diff]                                                             |
-| LaTeX         | **[`Latex Beautify`][Latex Beautify]**                                                                                                                           |
+| LaTeX         | **:white_check_mark: [`Latex Indent`][Latex Indent]**                                                                                                            |
 | LESS          | **:white_check_mark: [`Pretty Diff`][Pretty Diff]**, :white_check_mark: [`CSScomb`][CSScomb]                                                                     |
 | Lua           | **[`Lua beautifier`][Lua beautifier]**                                                                                                                           |
 | Makefile      |                                                                                                                                                                  |
@@ -86,7 +86,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 | HTML Beautifier      | :x: TODO                |
 | JS Beautify          | :white_check_mark: Done |
 | JSCS Fixer           | :x: TODO                |
-| Latex Beautify       | :x: TODO                |
+| Latex Indent         | :white_check_mark: Done |
 | Lua beautifier       | :x: TODO                |
 | ocp-indent           | :x: TODO                |
 | Perltidy             | :x: TODO                |
@@ -134,7 +134,7 @@ Some of the supported formatters are developed for Node.js and are automatically
 [PHPCBF]: http://php.net/manual/en/install.php
 [HTML Beautifier]: https://github.com/threedaymonk/htmlbeautifier
 [Coffee Formatter]: https://github.com/Glavin001/Coffee-Formatter
-[Latex Beautify]: https://github.com/cmhughes/latexindent.pl
+[Latex Indent]: https://github.com/cmhughes/latexindent.pl
 [align-yaml]: https://github.com/jonschlinkert/align-yaml
 [sqlformat]: https://github.com/andialbrecht/sqlparse
 [beautysh]: https://github.com/bemeurer/beautysh
