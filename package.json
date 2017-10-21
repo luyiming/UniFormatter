@@ -44,8 +44,8 @@
     "onLanguage:latex",
     "onLanguage:xml",
     "onLanguage:objective-c",
-    "onLanguage:objective-cpp"
-    // "onCommand:uniformatter.format"
+    "onLanguage:objective-cpp",
+    "onCommand:uniformatter.format"
   ],
   "main": "./out/extension",
   "scripts": {
@@ -77,10 +77,10 @@
     "tidy-markdown": "2.0.3"
   },
   "contributes": {
-    // "commands": [{
-    //   "command": "uniformatter.format",
-    //   "title": "Format current document"
-    // }],
+    "commands": [{
+      "command": "uniformatter.format",
+      "title": "UniFormatter: format document"
+    }],
     "configuration": {
       "type": "object",
       "title": "Code Formatter Configuration",

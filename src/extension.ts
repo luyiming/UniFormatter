@@ -23,13 +23,9 @@ export function activate(context: vscode.ExtensionContext) {
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
 
-    // let disposable = vscode.commands.registerCommand('uniformatter.format', () => {
-    //     formatterManager.formatActiveDocument();
-    // });
+    let disposable = vscode.commands.registerCommand('uniformatter.format', () => {
+        formatterManager.formatActiveDocument();
+    });
 
-    context.subscriptions.push();
-}
-
-// this method is called when your extension is deactivated
-export function deactivate() {
+    context.subscriptions.push(disposable, formatterManager);
 }
