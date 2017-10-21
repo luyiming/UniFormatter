@@ -22,13 +22,18 @@ export class UncrustifyFormatter extends Formatter {
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
 
-        let cfgFile = vscode.workspace.getConfiguration('uncrustify', document.uri)['config'];
+        let cfgFile = vscode.workspace.getConfiguration('formatter.uncrustify', document.uri)['config'];
+
+        let configFileDir: string;
 
         if (vscode.workspace.workspaceFolders == undefined) {
-            // TODO: no workspace folder
+            configFileDir = path.dirname(document.fileName);
+        }
+        else {
+            configFileDir = vscode.workspace.workspaceFolders[0].uri.fsPath
         }
 
-        cfgFile = path.resolve(vscode.workspace.workspaceFolders[0].uri.fsPath, cfgFile);
+        cfgFile = path.resolve(configFileDir, cfgFile);
 
         let args = ['-c', cfgFile, '-f', document.fileName]
 

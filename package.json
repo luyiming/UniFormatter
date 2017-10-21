@@ -24,6 +24,8 @@
   ],
   "activationEvents": [
     "onLanguage:cpp",
+    "onLanguage:c",
+    "onLanguage:css",
     "onLanguage:yaml",
     "onLanguage:python",
     "onLanguage:shellscript",
@@ -40,7 +42,10 @@
     "onLanguage:sql",
     "onLanguage:scss",
     "onLanguage:latex",
-    "onCommand:code-formatter.run"
+    "onLanguage:xml",
+    "onLanguage:objective-c",
+    "onLanguage:objective-cpp"
+    // "onCommand:uniformatter.format"
   ],
   "main": "./out/extension",
   "scripts": {
@@ -72,10 +77,10 @@
     "tidy-markdown": "2.0.3"
   },
   "contributes": {
-    "commands": [{
-      "command": "code-formatter.run",
-      "title": "Format Document"
-    }],
+    // "commands": [{
+    //   "command": "uniformatter.format",
+    //   "title": "Format current document"
+    // }],
     "configuration": {
       "type": "object",
       "title": "Code Formatter Configuration",
@@ -139,14 +144,15 @@
         "css.code-formatter": {
           "enum": [
             "js-beautify",
-            "CSScomb"
+            "prettydiff"
           ],
           "default": "js-beautify",
           "description": "Formatter for CSS languague"
         },
         "html.code-formatter": {
           "enum": [
-            "js-beautify"
+            "js-beautify",
+            "prettydiff"
           ],
           "default": "js-beautify",
           "description": "Formatter for html languague"
@@ -160,14 +166,16 @@
         },
         "javascript.code-formatter": {
           "enum": [
-            "js-beautify"
+            "js-beautify",
+            "prettydiff"
           ],
           "default": "js-beautify",
           "description": "Formatter for javascript languague"
         },
         "json.code-formatter": {
           "enum": [
-            "js-beautify"
+            "js-beautify",
+            "prettydiff"
           ],
           "default": "js-beautify",
           "description": "Formatter for json languague"
@@ -192,6 +200,20 @@
           ],
           "default": "tidy-markdown",
           "description": "Code formatter for markdown languague"
+        },
+        "objective-c.code-formatter": {
+          "enum": [
+            "clang-format"
+          ],
+          "default": "clang-format",
+          "description": "Formatter for objective-c languague"
+        },
+        "objective-cpp.code-formatter": {
+          "enum": [
+            "clang-format"
+          ],
+          "default": "clang-format",
+          "description": "Formatter for objective-c++ languague"
         },
         "python.code-formatter": {
           "enum": [
@@ -228,29 +250,36 @@
           "default": "sqlformat",
           "description": "Code formatter for SQL languague"
         },
+        "xml.code-formatter": {
+          "enum": [
+            "prettydiff"
+          ],
+          "default": "prettydiff",
+          "description": "Code formatter for XML languague"
+        },
         "yaml.code-formatter": {
           "enum": [
             "align-yaml"
           ],
           "default": "align-yaml",
-          "description": "Code formatter for yanl languague"
+          "description": "Code formatter for YAML languague"
         },
-        "align-yaml.padding": {
+        "formatter.align-yaml.padding": {
           "type": "integer",
           "default": 0,
           "description": "The amount of padding to add next to each line. (Supported by align-yaml)"
         },
-        "autopep8.maxline": {
-          "type": "integer",
-          "default": 79,
-          "description": "Maximum allowed line length"
-        },
-        "beautysh.indentSize": {
+        "formatter.autopep8.indentSize": {
           "type": "integer",
           "default": 4,
           "description": "Sets the number of spaces to be used in indentation."
         },
-        "clang-format.style": {
+        "formatter.beautysh.indentSize": {
+          "type": "integer",
+          "default": 4,
+          "description": "Sets the number of spaces to be used in indentation."
+        },
+        "formatter.clang-format.style": {
           "enum": [
             "LLVM",
             "Google",
@@ -261,14 +290,340 @@
           ],
           "type": "string",
           "default": "LLVM",
-          "description": "Use `file` to load style configuration from .clang-format file located in one of the parent directories of the source file"
+          "description": "Use `file` to load style configuration from `.clang-format` file located in one of the parent directories of the source file. You can put one `.clang-format` file in the root directory to provide default configuration"
         },
-        "coffee-fmt.indentSize": {
-          "type": "integer",
-          "default": 4,
-          "description": "Sets the number of spaces to be used in indentation."
+        "formatter.coffee-fmt.config": {
+          "type":"object",
+          "description": "Possible values for indent_style: [\"space\", \"tab\"]. indent_size is ignored when using tabs",
+          "properties": {
+            "indent_style": {
+              "enum": [
+                "space", "tab"
+              ]
+            },
+            "indent_size": {
+              "type": "number"
+            },
+            "eol": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "indent_style": "space",
+            "indent_size": 4,
+            "eol": "\n"
+          }
         },
-        "uncrustify.config": {
+        "formatter.js-beautify.config": {
+          "type": "object",
+          "default": {
+            "js": {
+              "indent_size": 4,
+              "indent_char": " ",
+              "indent_with_tabs": false,
+              "eol": "\n",
+              "end_with_newline": false,
+              "preserve_newlines": true,
+              "space_in_paren": false,
+              "space_in_empty_paren": false,
+              "jslint_happy": false,
+              "space_after_anon_function": false,
+              "indent_inner_html": false,
+              "brace_style": "collapse",
+              "unindent_chained_methods": false,
+              "break_chained_methods": false,
+              "keep_array_indentation": false,
+              "wrap_line_length": 0,
+              "e4x": false,
+              "comma_first": false,
+              "operator_position": "before-newline"
+            },
+            "html": {
+              "indent_size": 4,
+              "indent_char": " ",
+              "indent_with_tabs": false,
+              "eol": "\n",
+              "end_with_newline": false,
+              "preserve_newlines": true,
+              "indent_inner_html": false,
+              "brace_style": "collapse",
+              "wrap_line_length": 0,
+              "wrap_attributes": "auto"
+            },
+            "css": {
+              "indent_size": 4,
+              "indent_char": " ",
+              "indent_with_tabs": false,
+              "eol": "\\n",
+              "end_with_newline": false,
+              "selector_separator_newline": false,
+              "newline_between_rules": false
+            }
+          },
+          "properties": {
+            "js": {
+              "type": "object",
+              "properties": {
+                "indent_size": {
+                  "type": "number",
+                  "description": "Indentation size"
+                },
+                "indent_char": {
+                  "type": "string",
+                  "description": "Indentation character"
+                },
+                "indent_with_tabs": {
+                  "type": "boolean",
+                  "description": "Indent with tabs, overrides indent_size and indent_char"
+                },
+                "eol": {
+                  "type": "string",
+                  "description": "Character(s) to use as line terminators."
+                },
+                "end_with_newline": {
+                  "type": "boolean",
+                  "description": "End output with newline"
+                },
+                "preserve_newlines": {
+                  "type": "boolean",
+                  "description": "Preserve existing line-breaks"
+                },
+                "space_in_paren": {
+                  "type": "boolean",
+                  "description": "Add padding spaces within paren, ie. f( a, b )"
+                },
+                "space_in_empty_paren": {
+                  "type": "boolean",
+                  "description": "Add a single space inside empty paren, ie. f( )"
+                },
+                "jslint_happy": {
+                  "type":"boolean",
+                  "description": "Enable jslint-stricter mode"
+                },
+                "space_after_anon_function": {
+                  "type": "boolean",
+                  "description": "Add a space before an anonymous function's parens, ie. function ()"
+                },
+                "indent_inner_html": {
+                  "type": "boolean",
+                  "description": "Indent <head> and <body> sections."
+                },
+                "brace_style": {
+                  "enum": [
+                    "collapse-preserve-inline",
+                    "collapse",
+                    "expand",
+                    "end-expand",
+                    "none"
+                  ],
+                  "description": "[collapse|expand|end-expand|none][,preserve-inline] [collapse,preserve-inline]"
+                },
+                "unindent_chained_methods": {
+                  "type": "boolean",
+                  "description": "Don't indent chained method calls"
+                },
+                "break_chained_methods": {
+                  "type": "boolean",
+                  "description": "Break chained method calls across subsequent lines"
+                },
+                "keep_array_indentation": {
+                  "type": "boolean",
+                  "description": "Preserve array indentation"
+                },
+                "wrap_line_length": {
+                  "type": "integer",
+                  "description": "Maximum characters per line (0 disables)"
+                },
+                "e4x": {
+                  "type":"boolean",
+                  "description": "Pass E4X xml literals through untouched"
+                },
+                "comma_first": {
+                  "type": "boolean",
+                  "description": "Put commas at the beginning of new line instead of end"
+                },
+                "operator_position": {
+                  "enum": [
+                    "before-newline", "after-newline", "preserve-newline"
+                  ],
+                  "description": "Set operator position (before-newline|after-newline|preserve-newline)"
+                }
+              }
+            },
+            "html": {
+              "type": "object",
+              "properties": {
+                "indent_size": {
+                  "type": "number",
+                  "description": "Indentation size"
+                },
+                "indent_char": {
+                  "type": "string",
+                  "description": "Indentation character"
+                },
+                "indent_with_tabs": {
+                  "type": "boolean",
+                  "description": "Indent with tabs, overrides indent_size and indent_char"
+                },
+                "eol": {
+                  "type": "string",
+                  "description": "Character(s) to use as line terminators."
+                },
+                "end_with_newline": {
+                  "type": "boolean",
+                  "description": "End output with newline"
+                },
+                "preserve_newlines": {
+                  "type": "boolean",
+                  "description": "Preserve existing line-breaks"
+                },
+                "indent_inner_html": {
+                  "type": "boolean",
+                  "description": "Indent <head> and <body> sections."
+                },
+                "brace_style": {
+                  "enum": [
+                    "collapse-preserve-inline",
+                    "collapse",
+                    "expand",
+                    "end-expand",
+                    "none"
+                  ],
+                  "description": "[collapse|expand|end-expand|none][,preserve-inline] [collapse,preserve-inline]"
+                },
+                "wrap_line_length": {
+                  "type": "integer",
+                  "description": "Maximum characters per line (0 disables)"
+                },
+                "wrap_attributes": {
+                  "enum": [
+                    "auto", "force", "force-aligned", "force-expand-multiline"
+                  ],
+                  "description": "Wrap attributes to new lines [auto|force|force-aligned|force-expand-multiline]"
+                }
+              }
+            },
+            "css": {
+              "type": "object",
+              "properties": {
+                "indent_size": {
+                  "type": "number",
+                  "description": "Indentation size"
+                },
+                "indent_char": {
+                  "type": "string",
+                  "description": "Indentation character"
+                },
+                "indent_with_tabs": {
+                  "type": "boolean",
+                  "description": "Indent with tabs, overrides indent_size and indent_char"
+                },
+                "eol": {
+                  "type": "string",
+                  "description": "Character(s) to use as line terminators."
+                },
+                "end_with_newline": {
+                  "type": "boolean",
+                  "description": "End output with newline"
+                },
+                "selector_separator_newline": {
+                  "type": "boolean",
+                  "description": "Add a newline between multiple selectors"
+                },
+                "newline_between_rules": {
+                  "type": "boolean",
+                  "description": "Add a newline between CSS rules"
+                }
+              }
+            }
+          }
+        },
+        "formatter.pug-beautify.config": {
+          "type":"object",
+          "properties": {
+            "indent_style": {
+              "enum": [
+                "space", "tab"
+              ]
+            },
+            "indent_size": {
+              "type": "number"
+            },
+            "omit_div": {
+              "type":"boolean",
+              "description": "whether omit 'div' tag"
+            }
+          },
+          "default": {
+            "indent_style": "space",
+            "indent_size": 4,
+            "omit_div": false
+          }
+        },
+        "formatter.ruby-beautify.config": {
+          "type":"object",
+          "description": "Possible values for indent_style: [\"space\", \"tab\"]. indent_size is ignored when using tabs",
+          "properties": {
+            "indent_style": {
+              "enum": [
+                "space", "tab"
+              ]
+            },
+            "indent_size": {
+              "type": "number"
+            }
+          },
+          "default": {
+            "indent_style": "space",
+            "indent_size": 4
+          }
+        },
+        "formatter.sqlformat.config": {
+          "type": "object",
+          "properties": {
+            "keyword_case": {
+              "enum": [
+                "upper",
+                "lower",
+                "capitalize",
+                "unchanged"
+              ],
+              "description": "Change case of keywords"
+            },
+            "identifier_case": {
+              "enum": [
+                "upper",
+                "lower",
+                "capitalize",
+                "unchanged"
+              ],
+              "description": "Change case of identifiers"
+            },
+            "reindent": {
+              "type":"boolean",
+              "description": "reindent statements"
+            },
+            "reindent_aligned": {
+              "type": "boolean",
+              "description": "reindent statements to aligned format"
+            },
+            "indent_size": {
+              "type": "number"
+            },
+            "space_around_operators": {
+              "type": "boolean"
+            }
+          },
+          "default": {
+            "keyword_case": "upper",
+            "identifier_case": "unchanged",
+            "reindent": true,
+            "reindent_aligned": false,
+            "indent_size": 2,
+            "space_around_operators": true
+          }
+        },
+        "formatter.uncrustify.config": {
           "type": "string",
           "default": "path-to-config-file",
           "description": "Path to uncrustify config file. Absolute path or relative path. Relative to workspace root."

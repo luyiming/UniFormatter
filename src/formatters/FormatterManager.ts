@@ -7,7 +7,7 @@ import { AlignYamlFormatter } from './align-yaml'
 import { Autopep8Formatter } from './autopep8'
 import { BeautyshFormatter } from './beautysh'
 import { ClangFormatFormatter } from './clang-format'
-import { CljfmtFormatter } from './cljfmt'
+import { CljfmtFormatter } from './cljfmt/cljfmt'
 import { CoffeeFmtFormatter } from './coffee-fmt'
 import { TidyMarkdownFormatter } from './tidy-markdown'
 import { CSScombFormatter } from './csscomb'
@@ -21,17 +21,16 @@ import { LatexindentFormatter } from './latexindent'
 
 let supportedLanguages = {
     "bat": false, "bibtex": false, "clojure": true, "coffeescript": true,
-    "c": true, "cpp": true, "csharp": false, "css": true,
-    "diff": false, "dockerfile": false, "fsharp": false, "git-commit": false,
-    "git-rebase": false, "go": false, "groovy": false, "handlebars": false,
+    "c": true, "cpp": true, "csharp": false, "css": true, "dockerfile": false,
+    "fsharp": false, "go": false, "groovy": false, "handlebars": false,
     "html": true, "ini": false, "java": false, "javascript": true,
     "json": true, "latex": true, "less": true, "lua": false,
-    "makefile": false, "markdown": true, "objective-c": false, "objective-cpp": false,
+    "makefile": false, "markdown": true, "objective-c": true, "objective-cpp": true,
     "perl": false, "perl6": false, "php": false, "powershell": false,
     "jade": true, "python": true, "r": false, "razor": false,
     "ruby": true, "rust": false, "scss": true, "sass": false,
     "shaderlab": false, "shellscript": true, "sql": true, "swift": false,
-    "typescript": false, "tex": false, "vb": false, "xml": false,
+    "typescript": false, "tex": false, "vb": false, "xml": true,
     "xsl": false, "yaml": true
 };
 
@@ -81,6 +80,15 @@ export class FormatterManager {
         formatter.formatDocument();
     }
 
+    public dispose() {
+        for (let lanId in supportedLanguages) {
+            if (this.data[lanId].handler !== null) {
+                this.data[lanId].handler.dispose();
+                this.data[lanId].handler = null;
+            }
+        }
+    }
+
     private updateConfig() {
         let disabledLanguage: string[] = vscode.workspace.getConfiguration("code-formatter", vscode.window.activeTextEditor.document.uri).get('disable');
         for (let lanId in supportedLanguages) {
@@ -127,15 +135,5 @@ class UniDocumentFormattingEditProvider implements vscode.DocumentFormattingEdit
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken): Thenable<vscode.TextEdit[]> {
         return document.save().then(() => this.formatter.getDocumentFormattingEdits(document));
-        // let textEditor = vscode.window.activeTextEditor;
-        // var firstLine = textEditor.document.lineAt(0);
-        // var lastLine = textEditor.document.lineAt(textEditor.document.lineCount - 1);
-        // var textRange = new vscode.Range(0,
-        //     firstLine.range.start.character,
-        //     textEditor.document.lineCount - 1,
-        //     lastLine.range.end.character);
-        // return new Promise((resolve, reject) => {
-        //     resolve([vscode.TextEdit.delete(textRange)]);
-        // });
     }
 }

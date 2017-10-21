@@ -25,7 +25,7 @@ export class BeautyshFormatter extends Formatter {
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
 
-        let indentSize = vscode.workspace.getConfiguration('beautysh', document.uri)['indentSize'];
+        let indentSize = vscode.workspace.getConfiguration('formatter.beautysh', document.uri)['indentSize'];
 
         let args = ['--indent-size', indentSize, '--files']
 

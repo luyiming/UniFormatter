@@ -15,7 +15,7 @@ export class AlignYamlFormatter extends Formatter {
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
 
-        let padding: number = vscode.workspace.getConfiguration('align-yaml', document.uri)['padding'];
+        let padding: number = vscode.workspace.getConfiguration('formatter.align-yaml', document.uri)['padding'];
 
         return this.getEdits(document.getText(), align(document.getText(), padding));
     }

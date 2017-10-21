@@ -22,7 +22,25 @@ export class SQLFormatFormatter extends Formatter {
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
 
-        let args = [document.fileName, '-k', 'lower'];
+        let config = vscode.workspace.getConfiguration('formatter.sqlformat', document.uri)['config'];
+
+        let args = [document.fileName];
+
+        if (config['keyword_case'] !== 'unchanged')
+            args.push('--keywords', config['keyword_case']);
+
+        if (config['identifier_case'] !== 'unchanged')
+            args.push('--identifiers', config['identifier_case']);
+
+        args.push('--indent_width', config['indent_size']);
+
+        if (config['reindent'] === true)
+            args.push('--reindent');
+
+        if (config['reindent_aligned'] === true)
+            args.push('--reindent_aligned');
+        if (config['space_around_operators'] === true)
+            args.push('--use_space_around_operators');
 
         return this.exe.run(args, {}, true)
             .then(str => this.getEdits(document.getText(), str));

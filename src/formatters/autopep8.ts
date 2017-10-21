@@ -22,13 +22,12 @@ export class Autopep8Formatter extends Formatter {
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
 
-        let maxline = vscode.workspace.getConfiguration('autopep8', document.uri)['maxline'];
+        let indentSize = vscode.workspace.getConfiguration('formatter.autopep8', document.uri)['indentSize'];
 
         // -d: use unified diff output
-        let formatFlags = ['-d', '--max-line-length', maxline, document.fileName]
+        let formatFlags = ['-d', '--indent-size', indentSize, document.fileName]
 
-        return this.exe.run(formatFlags, {}, true)
-            .then(str => this.getEditsFromDiff(str));
-
+                          return this.exe.run(formatFlags, {}, true)
+                              .then(str => this.getEditsFromDiff(str));
     }
 }

@@ -22,9 +22,15 @@ export class Executable {
             cp.execFile(this.cmd, args, env, (err, stdout, stderr) => {
                 try {
                     if (err && (<any>err).code === 'ENOENT') {
+                        vscode.window.showInformationMessage(`Could not find \'${path.basename(this.cmd)}\'. The program may not be installed.`, 'Install').then(selected => {
+                            if (selected === 'More') {
+                                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(this.homepage));
+                            }
+                        });
                         return reject('Missing Tool');
                     }
                     if (err) {
+                        vscode.window.showErrorMessage(err.message);
                         console.log(err);
                         return reject('Internal issues while running format tool');
                     };
@@ -37,16 +43,7 @@ export class Executable {
                 }
             });
         }).catch(err => {
-            if (typeof err === 'string' && err.startsWith('Missing Tool')) {
-                vscode.window.showInformationMessage(`Could not find \'${path.basename(this.cmd)}\'. The program may not be installed.`, 'More').then(selected => {
-                    if (selected === 'More') {
-                        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(this.homepage));
-                    }
-                });
-            } else {
-                vscode.window.showErrorMessage(err);
-                console.log(err);
-            }
+            console.log(err);
             return undefined;
         });
     }

@@ -13,12 +13,14 @@ export class CoffeeFmtFormatter extends Formatter {
     }
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
-        let config = vscode.workspace.getConfiguration('coffee-fmt', document.uri);
+        let config = vscode.workspace.getConfiguration('formatter.coffee-fmt.config', document.uri);
 
         let options = {
-            tab: ' '.repeat(config['indentSize']),
-            newLine: '\n'
+            tab: ' '.repeat(config['indent_size']),
+            newLine: config['eol']
         };
+
+        if (config['indent_style'] === 'tab') options.tab = '\t';
 
         let formattingStr: string;
 

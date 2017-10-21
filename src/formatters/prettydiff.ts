@@ -15,9 +15,23 @@ export class PrettyDiffFormatter extends Formatter {
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
 
+        let lang = 'auto';
+        switch (document.languageId) {
+            case 'csv': lang = 'csv'; break;
+            case 'xml': lang = 'xml'; break;
+            case 'html': lang = 'html'; break;
+            case 'javascript': lang = 'javascript'; break;
+            case 'json': lang = 'json'; break;
+            case 'css': lang = 'css'; break;
+            case 'less': lang = 'less'; break;
+            case 'scss': lang = 'scss'; break;
+            default: lang = 'auto';
+        }
+
         let options = {
             mode: 'beautify',
-            source: document.getText()
+            source: document.getText(),
+            lang: lang
         };
 
         let str = prettydiff(options);

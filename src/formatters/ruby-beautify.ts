@@ -21,8 +21,18 @@ export class RubyBeautifyFormatter extends Formatter {
     }
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
+        let config = vscode.workspace.getConfiguration('formatter.ruby-beautify.config', document.uri);
 
-        return this.exe.run([document.fileName], {}, true)
+        let options = [];
+
+        if (config['indent_style'] === 'tab')
+            options.push('--tabs');
+        else {
+            options.push('--spaces');
+            options.push('--indent_count', config['indent_size']);
+        }
+
+        return this.exe.run([...options, document.fileName], {}, true)
             .then(str => this.getEdits(document.getText(), str));
 
     }

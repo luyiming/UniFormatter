@@ -1,31 +1,44 @@
 'use strict';
 
 import vscode = require('vscode');
-import align = require('align-yaml');
 import jsbeautify = require('js-beautify');
 import { Formatter } from './Formatter'
 
 export class JSBeautifyFormatter extends Formatter {
 
     public homepage: string;
-    private beautify;
 
     constructor(languageId: string) {
         super(languageId);
-        switch (languageId) {
-            case 'javascript': case 'json': this.beautify = jsbeautify.js_beautify; break;
-            case 'html': this.beautify = jsbeautify.html_beautify; break;
-            case 'css': this.beautify = jsbeautify.css_beautify; break;
-            default: this.beautify = jsbeautify.js_beautify; break;
-        }
         this.homepage = 'https://github.com/beautify-web/js-beautify';
     }
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
 
-        let options = { indent_size: 4 };
+        let config = vscode.workspace.getConfiguration('formatter.js-beautify', document.uri)['config'];
 
-        return this.getEdits(document.getText(), this.beautify(document.getText(), options));
+        let options, beautifier;
+
+        switch (document.languageId) {
+            case 'javascript': case 'json':
+              beautifier = jsbeautify.js_beautify;
+              options = config['js'];
+              break;
+            case 'html':
+              beautifier = jsbeautify.html_beautify;
+              options = config['html'];
+              break;
+            case 'css':
+              beautifier = jsbeautify.css_beautify;
+              options = config['css'];
+              break;
+            default:
+              beautifier = jsbeautify.js_beautify;
+              options = {};
+              break;
+        }
+
+        return this.getEdits(document.getText(), beautifier(document.getText(), options));
     }
 }
 

@@ -24,8 +24,8 @@ export class ClangFormatFormatter extends Formatter {
 
     public getDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
 
-        let formatterConfig = vscode.workspace.getConfiguration('clang-format', document.uri);
-        let args = ['-style=' + formatterConfig['style'], document.fileName] || [document.fileName];
+        let formatterConfig = vscode.workspace.getConfiguration('formatter.clang-format', document.uri);
+        let args = ['-style=' + formatterConfig['style'], document.fileName];
 
         return this.exe.run(args, {}, true)
             .then(str => this.getEdits(document.getText(), str));

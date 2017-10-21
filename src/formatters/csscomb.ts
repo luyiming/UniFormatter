@@ -5,6 +5,8 @@ import Comb = require('csscomb');
 import path = require('path');
 import { Formatter } from './Formatter'
 
+// FIXME:
+
 export class CSScombFormatter extends Formatter {
 
     public homepage: string;
